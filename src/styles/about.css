@@ -1,0 +1,963 @@
+/* About page. Shared pieces (page hero, section heads, facts, pull quotes, photo strip, CTA band) live in
+   components.css; this file only adds what the About page needs. */
+
+/* ─── Hero ───────────────────────────────────────────────────────────────── */
+.about-hero .page-hero__media img {
+  object-position: 50% 45%;
+}
+/* The photo is bright (sky, sea, sand), so the text side needs more shade than the shared hero gives it. */
+@media (min-width: 761px) and (max-width: 1100px) {
+  .about-hero .page-hero__media {
+    inset: 0 0 0 40%;
+  }
+  .about-hero .page-hero__media::after {
+    background:
+      linear-gradient(to right, var(--night) 0%, rgb(7 18 34 / 0.82) 38%, rgb(7 18 34 / 0.2) 80%),
+      linear-gradient(to top, var(--night) 0%, transparent 40%);
+  }
+}
+@media (max-width: 760px) {
+  .about-hero .page-hero__media::after {
+    background: linear-gradient(to top, var(--night) 30%, rgb(7 18 34 / 0.85) 60%, rgb(7 18 34 / 0.72) 100%);
+  }
+}
+.about-jump {
+  margin-top: clamp(32px, 4.5vw, 56px);
+  padding-top: 16px;
+  border-top: 1px solid rgb(255 255 255 / 0.2);
+  max-width: 760px;
+}
+.about-jump ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 26px;
+}
+.about-jump a {
+  display: inline-block;
+  padding-block: 10px;
+  font-weight: 600;
+  font-stretch: 106%;
+  color: rgb(255 255 255 / 0.8);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.35em;
+  transition: color 0.2s, text-decoration-color 0.25s;
+}
+.about-jump a:hover {
+  color: var(--salt);
+  text-decoration-color: var(--ember);
+}
+
+/* Sections reached from the jump links clear the fixed header. */
+#story,
+#liberty,
+#where,
+#leadership,
+#beliefs,
+#contact {
+  scroll-margin-top: 24px;
+}
+
+/* ─── Mission ────────────────────────────────────────────────────────────── */
+.mission__statement {
+  color: var(--ocean);
+  max-width: 24ch;
+  font-size: clamp(2rem, 1.2rem + 2.7vw, 3.6rem);
+  line-height: 1.04;
+}
+.pillars {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 36px clamp(24px, 4vw, 64px);
+  margin-top: clamp(48px, 6vw, 96px);
+}
+.pillars li {
+  border-top: 1.5px solid var(--ocean);
+  padding-top: 22px;
+}
+.pillars h3 {
+  color: var(--ocean);
+  max-width: 16ch;
+}
+.pillars p {
+  margin-top: 12px;
+  max-width: 40ch;
+}
+
+.why {
+  margin-top: clamp(80px, 10vw, 160px);
+}
+.why__media img {
+  aspect-ratio: 1;
+  object-position: 45% 50%;
+}
+.why__head {
+  color: var(--ocean);
+}
+.why__stat {
+  display: block;
+  font-size: clamp(5rem, 2rem + 10vw, 11.5rem);
+  font-weight: 830;
+  font-stretch: 122%;
+  line-height: 0.82;
+  letter-spacing: -0.045em;
+  font-variant-numeric: tabular-nums;
+}
+.why__label {
+  display: block;
+  margin-top: 18px;
+  font-size: var(--step-2);
+  font-weight: 700;
+  font-stretch: 106%;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  max-width: 24ch;
+}
+.why__text {
+  margin-top: 24px;
+  max-width: 48ch;
+}
+
+/* ─── Our story: a ship's log in two eras ────────────────────────────────── */
+.story .section-head h2 {
+  max-width: 14ch;
+}
+.era {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+  gap: 20px clamp(32px, 5vw, 80px);
+  align-items: start;
+}
+.era + .era {
+  margin-top: clamp(64px, 8vw, 120px);
+}
+.era__head {
+  position: sticky;
+  top: 96px;
+}
+.era__head h3 {
+  color: var(--ocean);
+}
+.era__head p {
+  margin-top: 8px;
+  color: var(--tide);
+  font-size: var(--step--1);
+}
+.timeline {
+  list-style: none;
+  padding: 0;
+  border-top: 1.5px solid var(--ocean);
+}
+.tl {
+  display: grid;
+  grid-template-columns: 8.2rem minmax(0, 1fr);
+  gap: 6px clamp(20px, 3vw, 40px);
+  padding-block: clamp(24px, 3vw, 36px);
+  border-bottom: 1px solid var(--mist);
+}
+.tl__year {
+  font-size: clamp(1.9rem, 1.5rem + 1.2vw, 2.6rem);
+  font-weight: 820;
+  font-stretch: 118%;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--ocean);
+  font-variant-numeric: tabular-nums;
+}
+.tl h4 {
+  font-size: var(--step-1);
+  font-weight: 720;
+  font-stretch: 106%;
+  line-height: 1.2;
+  color: var(--ocean);
+  text-wrap: balance;
+}
+.tl__body > p {
+  margin-top: 8px;
+  max-width: 54ch;
+}
+/* On wide screens a photo sits beside its entry instead of under it. */
+@media (min-width: 1180px) {
+  .tl__body:has(> .tl__photo) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+    grid-template-rows: auto auto 1fr;
+    column-gap: clamp(28px, 3vw, 48px);
+    align-items: start;
+  }
+  .tl__body:has(> .tl__photo) > :not(.tl__photo) {
+    grid-column: 1;
+  }
+  .tl__body > .tl__photo {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    margin-top: 4px;
+  }
+}
+.tl__photo {
+  margin-top: 22px;
+  max-width: 560px;
+}
+.tl__photo img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 6px;
+  background: var(--mist);
+}
+.tl figcaption {
+  margin-top: 10px;
+  font-size: var(--step--1);
+  color: var(--tide);
+}
+.tl__person {
+  margin-top: 20px;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  max-width: 460px;
+}
+.tl__person img {
+  flex: none;
+  width: 104px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.tl__person figcaption {
+  margin-top: 0;
+}
+.tl__quote {
+  margin-top: 20px;
+  padding-left: 20px;
+  box-shadow: inset 3px 0 0 var(--ocean);
+}
+.tl__quote p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--step-2);
+  line-height: 1.2;
+  color: var(--ocean);
+}
+.tl__quote figcaption {
+  margin-top: 6px;
+}
+
+/* ─── The Liberty ───────────────────────────────────────────────────────── */
+.liberty-about {
+  background: var(--night);
+  color: var(--salt);
+  overflow: hidden;
+}
+.liberty-about__lede {
+  font-size: var(--step-1);
+  line-height: 1.5;
+  color: rgb(255 255 255 / 0.86);
+}
+.liberty-specs {
+  margin: 0;
+  padding-block: 28px;
+  border-top: 1.5px solid rgb(255 255 255 / 0.5);
+  border-bottom: 1px solid rgb(255 255 255 / 0.14);
+  grid-template-columns: repeat(auto-fill, minmax(min(132px, 100%), 1fr));
+  gap: 26px 24px;
+}
+@media (min-width: 760px) {
+  .liberty-specs {
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    column-gap: 32px;
+  }
+}
+.liberty-specs dd small {
+  display: block;
+  margin-top: 6px;
+  font-size: var(--step--1);
+  font-weight: 450;
+  font-stretch: 100%;
+  line-height: 1.35;
+  color: var(--haze);
+}
+.liberty-story {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+  gap: 56px clamp(32px, 6vw, 96px);
+  margin-top: clamp(48px, 6vw, 88px);
+  align-items: start;
+}
+.liberty-story .prose p {
+  color: rgb(255 255 255 / 0.84);
+}
+.containers h3 {
+  max-width: 20ch;
+}
+.containers > p {
+  margin-top: 14px;
+  max-width: 46ch;
+  color: rgb(255 255 255 / 0.84);
+}
+.container-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+/* Each container is drawn as one: corrugated steel, corner castings, doors at one end. */
+.box {
+  position: relative;
+  min-height: 92px;
+  padding: 14px 44px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 2px;
+  border-radius: 2px;
+  background:
+    linear-gradient(to left, transparent 0 30px, rgb(255 255 255 / 0.22) 30px 31.5px, transparent 31.5px),
+    repeating-linear-gradient(90deg, rgb(255 255 255 / 0.075) 0 2px, transparent 2px 11px),
+    var(--ocean);
+  box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.14);
+}
+.box--alt {
+  background:
+    linear-gradient(to left, transparent 0 30px, rgb(255 255 255 / 0.22) 30px 31.5px, transparent 31.5px),
+    repeating-linear-gradient(90deg, rgb(255 255 255 / 0.075) 0 2px, transparent 2px 11px),
+    var(--ocean-2);
+}
+.box--wide {
+  grid-column: 1 / -1;
+}
+.box::before,
+.box::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  height: 5px;
+  background:
+    linear-gradient(var(--haze), var(--haze)) left / 7px 100% no-repeat,
+    linear-gradient(var(--haze), var(--haze)) right / 7px 100% no-repeat;
+  opacity: 0.55;
+}
+.box::before {
+  top: 5px;
+}
+.box::after {
+  bottom: 5px;
+}
+.box strong {
+  font-weight: 700;
+  font-stretch: 106%;
+  line-height: 1.2;
+}
+.box span {
+  font-size: var(--step--1);
+  color: var(--haze);
+}
+.containers__more {
+  margin-top: 18px;
+  font-size: var(--step--1);
+  color: var(--haze);
+}
+
+.plans {
+  margin-top: clamp(64px, 8vw, 120px);
+}
+.plans__row {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+  gap: 14px clamp(24px, 4vw, 56px);
+  align-items: center;
+  padding-block: clamp(14px, 2vw, 22px);
+  border-top: 1px solid rgb(255 255 255 / 0.12);
+}
+.plans__row img {
+  width: 100%;
+  opacity: 0.9;
+}
+.plans__label {
+  font-size: var(--step--1);
+  line-height: 1.45;
+  color: rgb(255 255 255 / 0.72);
+  max-width: 30ch;
+}
+.plans__label strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: var(--step-1);
+  font-weight: 700;
+  font-stretch: 106%;
+  color: var(--salt);
+}
+.plans figcaption {
+  padding-top: 14px;
+  border-top: 1px solid rgb(255 255 255 / 0.12);
+  font-size: var(--step--1);
+  color: var(--haze);
+}
+
+/* The strip runs full-bleed but its first photo lines up with the content column, even past 1440px. */
+.liberty-strip {
+  --edge: max(var(--gutter), calc((100% - var(--max)) / 2 + var(--gutter)));
+  margin-top: clamp(48px, 6vw, 88px);
+  padding-inline: var(--edge);
+  scroll-padding-inline: var(--edge);
+  scrollbar-color: rgb(255 255 255 / 0.28) transparent;
+}
+.liberty-strip figure {
+  width: clamp(270px, 40vw, 600px);
+}
+.liberty-strip img {
+  aspect-ratio: 3 / 2;
+}
+.liberty-strip:focus-visible {
+  outline-offset: -2px;
+}
+
+/* ─── Where we serve ─────────────────────────────────────────────────────── */
+.where .section-head h2,
+.leadership .section-head h2,
+.contact h2 {
+  color: var(--ocean);
+}
+.place-title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-size: var(--step-3);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--ocean);
+}
+.madang {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 40px clamp(32px, 5vw, 80px);
+  align-items: start;
+}
+.madang__text > p:not(.notice) {
+  margin-top: 18px;
+  max-width: 50ch;
+}
+.madang__text .notice {
+  margin-top: 22px;
+}
+.madang__quote {
+  margin-top: 36px;
+}
+.madang__quote p {
+  font-size: var(--step-2);
+  color: var(--ocean);
+}
+
+/* The chart: Natural Earth coastline in SVG, places and labels as HTML so text stays readable at any width. */
+.chart {
+  margin: 0;
+}
+.chart__map {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--lagoon) 13%, var(--salt));
+}
+.chart__map svg {
+  width: 100%;
+  height: auto;
+}
+.chart__land {
+  fill: var(--salt);
+  stroke: var(--ocean);
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+}
+.chart__reef {
+  fill: none;
+  stroke: var(--lagoon);
+  stroke-opacity: 0.16;
+  stroke-width: 22;
+  stroke-linejoin: round;
+}
+.chart__reef--near {
+  stroke-opacity: 0.32;
+  stroke-width: 8;
+}
+.chart__marks {
+  position: absolute;
+  inset: 0;
+}
+.pin {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 50%;
+  background: var(--ocean);
+  box-shadow: 0 0 0 2px var(--salt);
+  transition: transform 0.3s var(--ease-out);
+}
+.pin--sm {
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+}
+.pin--home {
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  box-shadow:
+    0 0 0 3px var(--salt),
+    0 0 0 5.5px var(--lagoon);
+}
+.pin--fire {
+  background: var(--ember);
+  box-shadow:
+    0 0 0 2px var(--salt),
+    0 0 16px 5px rgb(223 100 65 / 0.5);
+}
+.pin.is-active {
+  transform: scale(1.7);
+}
+.chart__label {
+  position: absolute;
+  left: calc(var(--x) + var(--dx, 0px));
+  top: var(--y);
+  transform: translateY(-50%);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(0.8rem, 0.62rem + 0.55vw, 1.15rem);
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--ocean);
+}
+.chart__label--home {
+  font-size: clamp(0.95rem, 0.7rem + 0.8vw, 1.45rem);
+}
+.chart__label--c {
+  transform: translate(-50%, -50%);
+}
+.chart__label--r {
+  transform: translate(-100%, -50%);
+}
+.chart__label--sea {
+  color: var(--tide);
+  letter-spacing: 0.12em;
+}
+.chart__label--land {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 112%;
+  font-size: clamp(0.7rem, 0.6rem + 0.3vw, 0.875rem);
+  color: var(--tide);
+}
+.chart__scale {
+  position: absolute;
+  left: 4%;
+  bottom: 5%;
+  width: var(--w);
+  padding-top: 7px;
+  border-top: 2px solid var(--ocean);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  color: var(--tide);
+  white-space: nowrap;
+}
+.chart__scale::before,
+.chart__scale::after {
+  content: '';
+  position: absolute;
+  top: -6px;
+  width: 2px;
+  height: 10px;
+  background: var(--ocean);
+}
+.chart__scale::before {
+  left: 0;
+}
+.chart__scale::after {
+  right: 0;
+}
+.chart > figcaption {
+  margin-top: 12px;
+  font-size: var(--step--1);
+  color: var(--tide);
+}
+
+.places {
+  list-style: none;
+  padding: 0;
+  margin-top: clamp(40px, 5vw, 72px);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 clamp(24px, 4vw, 56px);
+  border-top: 1.5px solid var(--ocean);
+}
+.places li {
+  padding-block: 22px;
+  border-bottom: 1px solid var(--mist);
+  transition: box-shadow 0.25s;
+}
+.places h4 {
+  font-size: var(--step-2);
+  color: var(--ocean);
+  line-height: 1.1;
+}
+/* Pointing at a place lights its rule in lagoon, the chart's water colour; ember stays for actions and fire. */
+.places li.is-active {
+  box-shadow: inset 0 -2px 0 var(--lagoon);
+}
+.places p {
+  margin-top: 8px;
+  max-width: 44ch;
+}
+
+.elsewhere {
+  margin-top: clamp(72px, 9vw, 136px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 56px clamp(32px, 6vw, 96px);
+}
+.elsewhere__media {
+  margin-bottom: 26px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.elsewhere__media img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+.elsewhere__item p {
+  margin-top: 14px;
+  max-width: 54ch;
+}
+.elsewhere__item .link,
+.where .link,
+.leadership .link,
+.contact .link {
+  color: var(--ocean);
+}
+.elsewhere__item > .link {
+  margin-top: 6px;
+}
+/* Links that stand on their own get a 44px tap target. */
+.elsewhere__item > .link,
+.values__head .link,
+.leader__more .link,
+.structure__more .link,
+.press__links a,
+.contact__list dd a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  max-width: 100%;
+}
+.where__more {
+  margin-top: clamp(48px, 6vw, 80px);
+  padding-top: 22px;
+  border-top: 1px solid var(--mist);
+  max-width: 70ch;
+  color: var(--tide);
+}
+
+/* ─── Who leads us ───────────────────────────────────────────────────────── */
+.leaders {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 64px clamp(32px, 6vw, 112px);
+  align-items: end;
+}
+.leader__photo {
+  width: min(300px, 70%);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.leader h3 {
+  margin-top: 28px;
+  color: var(--ocean);
+}
+.leader__role {
+  margin-top: 8px;
+  font-weight: 600;
+  color: var(--tide);
+}
+.leader > p:not(.leader__role) {
+  margin-top: 14px;
+  max-width: 52ch;
+}
+.leader > p.leader__more {
+  margin-top: 4px;
+}
+/* The quote sits where Brett's photo sits, above the names; in the markup it follows the heading. */
+.leader--quote {
+  display: flex;
+  flex-direction: column;
+}
+.leader__quote {
+  order: -1;
+}
+.leader__quote p {
+  color: var(--ocean);
+  font-size: clamp(1.4rem, 0.95rem + 1.5vw, 2.2rem);
+}
+.leader__quote figcaption {
+  color: var(--basalt);
+}
+
+/* ─── What we believe ───────────────────────────────────────────────────── */
+.beliefs .section-head p {
+  color: rgb(255 255 255 / 0.84);
+}
+.beliefs .link {
+  color: var(--lagoon);
+}
+.purpose p {
+  max-width: 40ch;
+  font-size: clamp(1.4rem, 0.9rem + 1.7vw, 2.3rem);
+}
+.purpose figcaption {
+  color: var(--haze);
+  font-weight: 600;
+}
+.magna,
+.values,
+.structure {
+  margin-top: clamp(64px, 8vw, 120px);
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  gap: 24px clamp(32px, 5vw, 80px);
+  align-items: start;
+}
+.magna > div p {
+  margin-top: 14px;
+  max-width: 40ch;
+  color: rgb(255 255 255 / 0.84);
+}
+.values__head .link {
+  margin-top: 6px;
+  color: var(--lagoon);
+}
+.magna ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 40px;
+  border-top: 1.5px solid rgb(255 255 255 / 0.6);
+}
+.magna li {
+  padding-block: 18px;
+  border-bottom: 1px solid rgb(255 255 255 / 0.16);
+  font-size: var(--step-1);
+  line-height: 1.4;
+}
+.values ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(210px, 100%), 1fr));
+  column-gap: 40px;
+  border-top: 1.5px solid rgb(255 255 255 / 0.6);
+}
+.values li {
+  padding-block: 11px;
+  border-bottom: 1px solid rgb(255 255 255 / 0.14);
+  font-weight: 600;
+  font-stretch: 104%;
+}
+.structure .prose p {
+  color: rgb(255 255 255 / 0.84);
+}
+.structure .prose .structure__more {
+  margin-top: 4px;
+}
+
+/* ─── Contact ───────────────────────────────────────────────────────────── */
+.contact__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 48px clamp(32px, 6vw, 96px);
+  align-items: start;
+}
+.contact__intro {
+  margin-top: 16px;
+  font-size: var(--step-1);
+}
+.contact__address {
+  margin-top: 32px;
+  font-style: normal;
+  font-size: var(--step-2);
+  font-weight: 720;
+  font-stretch: 108%;
+  line-height: 1.25;
+  color: var(--ocean);
+}
+.contact__address .place {
+  display: block;
+  margin-bottom: 6px;
+  font-size: var(--step-1);
+}
+.contact__near {
+  margin-top: 14px;
+  color: var(--tide);
+  max-width: 34ch;
+}
+.contact__visit .btn {
+  margin-top: 26px;
+}
+.contact__list {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(24px, 4vw, 48px);
+  border-top: 1.5px solid var(--ocean);
+}
+.contact__list > div {
+  padding-block: 22px;
+  border-bottom: 1px solid var(--mist);
+}
+.contact__list dt {
+  font-size: var(--step--1);
+  color: var(--tide);
+}
+.contact__list dd {
+  margin: 6px 0 0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.contact__list a {
+  color: var(--ocean);
+}
+.contact__hours {
+  display: block;
+  margin-top: 4px;
+  font-weight: 400;
+  font-size: var(--step--1);
+  color: var(--tide);
+}
+.contact__safe {
+  grid-column: 1 / -1;
+}
+.contact__safe dd {
+  font-weight: 400;
+}
+
+.press {
+  margin-top: clamp(64px, 8vw, 112px);
+  padding: clamp(24px, 4vw, 48px);
+  border-radius: 6px;
+  background: var(--foam);
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 24px clamp(32px, 5vw, 80px);
+}
+.press h3 {
+  grid-column: 1 / -1;
+  color: var(--ocean);
+}
+.press__facts {
+  margin: 0;
+  display: grid;
+  gap: 14px;
+}
+.press__facts div {
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 1fr);
+  gap: 4px 20px;
+}
+.press__facts dt {
+  font-size: var(--step--1);
+  color: var(--tide);
+  padding-top: 2px;
+}
+.press__facts dd {
+  margin: 0;
+}
+.press__links {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  align-content: start;
+}
+
+/* ─── Closing call ──────────────────────────────────────────────────────── */
+.about-cta__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+.about-cta__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+}
+.about-cta__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, var(--night) 0%, rgb(7 18 34 / 0.7) 45%, rgb(7 18 34 / 0.25) 100%);
+}
+
+/* ─── Small screens ─────────────────────────────────────────────────────── */
+@media (max-width: 980px) {
+  .liberty-story,
+  .madang,
+  .contact__grid,
+  .press,
+  .magna,
+  .values,
+  .structure {
+    grid-template-columns: 1fr;
+  }
+  .places {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 860px) {
+  .pillars,
+  .era,
+  .elsewhere,
+  .leaders {
+    grid-template-columns: 1fr;
+  }
+  .era__head {
+    position: static;
+  }
+  .leaders {
+    align-items: start;
+  }
+  .plans__row {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .tl {
+    grid-template-columns: 1fr;
+  }
+  .places,
+  .magna ul,
+  .contact__list {
+    grid-template-columns: 1fr;
+  }
+  .container-list {
+    grid-template-columns: 1fr;
+  }
+  .press__facts div {
+    grid-template-columns: 1fr;
+  }
+  .chart__label--sea,
+  .chart__label--land {
+    display: none;
+  }
+}

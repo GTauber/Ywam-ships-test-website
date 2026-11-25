@@ -1,0 +1,917 @@
+/* Train page. Shared pieces (page hero, section heads, facts, steps, chips, FAQ,
+   board, CTA band) come from components.css; this file only adds what Train needs. */
+
+/* Anchored targets clear the fixed header when reached by a link. */
+#schools,
+#dts,
+#uofn,
+#apply,
+#faq,
+#port-ywam,
+.track,
+.course {
+  scroll-margin-top: calc(var(--header-h) + 16px);
+}
+
+/* ─── Hero ───────────────────────────────────────────────────────────────── */
+.train-hero .page-hero__media img {
+  object-position: 62% 40%;
+}
+.train-hero__facts {
+  margin-top: clamp(36px, 5vw, 64px);
+  padding-top: 20px;
+  border-top: 1px solid rgb(255 255 255 / 0.2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px clamp(28px, 4vw, 64px);
+}
+.train-hero__facts dt {
+  font-size: var(--step--1);
+  color: var(--haze);
+}
+.train-hero__facts dd {
+  margin: 4px 0 0;
+  font-size: var(--step-1);
+  font-weight: 720;
+  font-stretch: 110%;
+  line-height: 1.2;
+}
+.train-hero__grad {
+  margin-top: 20px;
+  color: rgb(255 255 255 / 0.78);
+}
+.train-hero__grad .link {
+  color: var(--salt);
+}
+
+/* ─── What a DTS is ──────────────────────────────────────────────────────── */
+.dts-intro__head {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+  gap: 40px clamp(32px, 6vw, 112px);
+  align-items: end;
+}
+.dts-intro h2 {
+  color: var(--ocean);
+  font-size: clamp(2.5rem, 1rem + 4.4vw, 5.4rem);
+  font-weight: 820;
+  font-stretch: 118%;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+}
+.dts-intro h2 span {
+  display: block;
+}
+.dts-intro__lede {
+  margin-top: clamp(20px, 2.4vw, 32px);
+  color: var(--ocean);
+  max-width: 40ch;
+}
+.dts-intro .prose {
+  margin-top: 20px;
+  max-width: 58ch;
+}
+.dts-intro__photo {
+  border-radius: 6px;
+  overflow: hidden;
+}
+.dts-intro__photo img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+
+/* The three phases, drawn as one line from Kona out and back again. */
+.phases {
+  list-style: none;
+  padding: 0;
+  margin-top: clamp(56px, 8vw, 112px);
+  display: grid;
+  grid-template-columns: minmax(0, 12fr) minmax(0, 10fr) minmax(220px, 5fr);
+}
+.phase {
+  padding-right: clamp(20px, 3vw, 44px);
+}
+.phase:last-child {
+  padding-right: 0;
+}
+.phase__bar {
+  display: block;
+  position: relative;
+  height: 8px;
+  margin-bottom: 28px;
+  background: var(--ocean);
+  margin-right: calc(-1 * clamp(20px, 3vw, 44px));
+}
+.phase:last-child .phase__bar {
+  margin-right: 0;
+}
+.phase--outreach .phase__bar {
+  background: var(--lagoon);
+}
+.phase--grad .phase__bar {
+  background: var(--ocean-2);
+}
+/* A port marker where each phase begins. */
+.phase__bar::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--salt);
+  box-shadow: inset 0 0 0 4px var(--ocean);
+  transform: translate(0, -50%);
+}
+.phase h3 {
+  color: var(--ocean);
+}
+.phase__len {
+  margin-top: 10px;
+  font-size: var(--step-1);
+  font-weight: 700;
+  font-stretch: 108%;
+}
+.phase__where {
+  font-size: var(--step-1);
+  color: var(--ocean);
+  line-height: 1.3;
+}
+.phase p:last-child {
+  margin-top: 14px;
+  max-width: 46ch;
+}
+.dts-facts {
+  margin-top: clamp(56px, 7vw, 96px);
+  padding-top: 28px;
+  border-top: 1.5px solid var(--ocean);
+}
+.dts-facts dd {
+  color: var(--ocean);
+}
+@media (max-width: 860px) {
+  .dts-intro__head {
+    grid-template-columns: 1fr;
+  }
+  .dts-intro__photo {
+    max-width: 420px;
+  }
+  .dts-intro__photo img {
+    aspect-ratio: 4 / 3;
+  }
+  .phases {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .phase {
+    padding-right: 0;
+  }
+  .phase__bar {
+    margin-right: 0;
+    margin-bottom: 22px;
+  }
+}
+
+/* ─── Departures board ───────────────────────────────────────────────────── */
+.train-board__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px 48px;
+  margin-bottom: clamp(32px, 5vw, 64px);
+}
+.train-board__head h2 {
+  max-width: 13ch;
+}
+.train-board__head p {
+  margin-top: 18px;
+  max-width: 44ch;
+  color: rgb(255 255 255 / 0.82);
+}
+.board__cost {
+  white-space: nowrap;
+  font-weight: 700;
+  font-stretch: 108%;
+}
+.board__cost small {
+  display: block;
+  margin-top: 4px;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-size: var(--step--1);
+  color: var(--haze);
+}
+/* Ember text on ocean is only 3.4:1 at tag size; white holds 11:1 and leaves ember for actions. */
+.train-board .tag--dts {
+  color: var(--salt);
+}
+/* School names are the board's main tap target: pad them to 44px without moving the text. */
+.train-board .board__school a {
+  display: inline-block;
+  padding-block: 10px;
+  margin-block: -10px;
+}
+.train-board .board__school a:focus-visible {
+  outline-offset: 4px;
+}
+@media (max-width: 760px) {
+  .train-board .board tr {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'date status'
+      'school school'
+      'type cost';
+    align-items: center;
+  }
+  .train-board .board__date {
+    grid-area: date;
+  }
+  .train-board .board__school {
+    grid-area: school;
+  }
+  .train-board .board__type {
+    grid-area: type;
+  }
+  .train-board .board__cost {
+    grid-area: cost;
+    text-align: right;
+  }
+  .train-board .board__cost small {
+    display: inline;
+    margin-left: 6px;
+  }
+  .train-board .board__status {
+    grid-area: status;
+    text-align: right;
+  }
+}
+
+/* ─── The DTS tracks: a sticky index beside long-form entries ────────────── */
+.tracks .section-head p {
+  color: rgb(255 255 255 / 0.82);
+}
+.tracks__layout {
+  display: grid;
+  grid-template-columns: minmax(200px, 3fr) minmax(0, 9fr);
+  gap: clamp(32px, 5vw, 88px);
+  align-items: start;
+}
+.track-index {
+  position: sticky;
+  top: calc(var(--header-h) + 24px);
+}
+.track-index ol {
+  list-style: none;
+  padding: 0;
+  border-top: 1.5px solid rgb(255 255 255 / 0.5);
+}
+.track-index ol a {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 15px 0;
+  border-bottom: 1px solid rgb(255 255 255 / 0.14);
+  text-decoration: none;
+  color: rgb(255 255 255 / 0.66);
+  font-weight: 650;
+  font-stretch: 108%;
+  transition:
+    color 0.25s,
+    padding-left 0.35s var(--ease-out),
+    box-shadow 0.35s var(--ease-out);
+}
+.track-index ol a:hover,
+.track-index ol a[aria-current] {
+  color: var(--salt);
+}
+.track-index ol a[aria-current] {
+  padding-left: 14px;
+  box-shadow: inset 2px 0 0 var(--ember);
+}
+.track-index__when {
+  flex: none;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-size: var(--step--1);
+  color: var(--haze);
+}
+.track-index__help {
+  margin-top: 22px;
+  font-size: var(--step--1);
+  color: var(--haze);
+}
+.track-index__help .link {
+  color: var(--salt);
+}
+
+.track {
+  padding-block: clamp(56px, 7vw, 104px);
+  border-top: 1px solid rgb(255 255 255 / 0.14);
+}
+.track:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+.track:last-child {
+  padding-bottom: 0;
+}
+.track h3 {
+  font-size: clamp(2.3rem, 1rem + 3.8vw, 4.8rem);
+  font-weight: 820;
+  font-stretch: 118%;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  max-width: 14ch;
+}
+.track__tagline {
+  margin-top: 16px;
+  font-size: var(--step-1);
+  color: rgb(255 255 255 / 0.86);
+  max-width: 40ch;
+}
+.track__grid {
+  margin-top: clamp(28px, 3.4vw, 48px);
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  grid-template-areas:
+    'body media'
+    'body facts';
+  grid-template-rows: auto 1fr;
+  gap: 28px clamp(28px, 4vw, 64px);
+  align-items: start;
+}
+/* Every other entry turns the page the other way. */
+.track:nth-child(even) .track__grid {
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  grid-template-areas:
+    'media body'
+    'facts body';
+}
+.track__body {
+  grid-area: body;
+}
+.track__body > p:not(.track__where) {
+  max-width: 60ch;
+  color: rgb(255 255 255 / 0.88);
+}
+.track__where {
+  margin-bottom: 14px;
+  font-size: var(--step-1);
+  color: var(--lagoon);
+  line-height: 1.3;
+}
+.track__quote {
+  margin: 28px 0 0;
+  padding-left: 20px;
+  box-shadow: inset 2px 0 0 rgb(255 255 255 / 0.3);
+}
+.track__quote p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.3rem, 1rem + 0.9vw, 1.8rem);
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  max-width: 32ch;
+}
+.track h4 {
+  margin-top: 32px;
+  font-size: var(--step-0);
+  font-weight: 700;
+  font-stretch: 106%;
+  color: var(--haze);
+}
+.track .chips {
+  margin-top: 12px;
+}
+.track__actions {
+  margin-top: 36px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 24px;
+}
+/* Standalone text links get a full 44px tap height. */
+.track__actions .link,
+.uofn__notes p + .link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.track__media {
+  grid-area: media;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.track__media img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+.track__media--landscape img {
+  aspect-ratio: 4 / 3;
+}
+.track__media--right img {
+  object-position: 72% 50%;
+}
+/* The fire dancer is shot on pure black, so let the night show through. */
+.track__media--fire {
+  border-radius: 0;
+}
+/* lighten (not screen) so the photo's near-black doesn't leave a faint box on the night background. */
+.track__media--fire img {
+  mix-blend-mode: lighten;
+}
+.track__facts {
+  grid-area: facts;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 24px;
+  padding-top: 20px;
+  border-top: 1.5px solid rgb(255 255 255 / 0.5);
+}
+.track__facts dt {
+  font-size: var(--step--1);
+  color: var(--haze);
+}
+.track__facts dd {
+  margin: 4px 0 0;
+  font-weight: 700;
+  font-stretch: 106%;
+  line-height: 1.3;
+}
+
+@media (max-width: 1080px) {
+  .tracks__layout {
+    grid-template-columns: 1fr;
+  }
+  .track-index {
+    position: static;
+  }
+  .track-index ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    border: 0;
+  }
+  .track-index ol a {
+    padding: 10px 16px;
+    border: 0;
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.3);
+  }
+  .track-index ol a[aria-current] {
+    padding-left: 16px;
+    box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.3);
+  }
+  .track-index__when {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  .track__grid,
+  .track:nth-child(even) .track__grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-template-areas:
+      'media'
+      'facts'
+      'body';
+  }
+  .track__media img,
+  .track__media--landscape img {
+    aspect-ratio: 3 / 2;
+    object-position: 50% 35%;
+  }
+  .track__media--right img {
+    object-position: 72% 50%;
+  }
+}
+@media (max-width: 420px) {
+  .track__facts {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── Graduate voices ────────────────────────────────────────────────────── */
+.grad-voices__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 48px clamp(32px, 6vw, 112px);
+  align-items: end;
+}
+.grad-voices__lead p {
+  color: var(--ocean);
+}
+.grad-voices__lead figcaption {
+  color: var(--ocean);
+}
+.grad-voices__lead figcaption span {
+  color: var(--tide);
+  opacity: 1;
+}
+.grad-voices__more {
+  list-style: none;
+  padding: 0;
+  border-top: 1.5px solid var(--ocean);
+}
+.grad-voices__more li {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--mist);
+}
+.grad-voices__more blockquote p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--step-1);
+  line-height: 1.35;
+}
+.grad-voices__more figcaption {
+  margin-top: 10px;
+  font-size: var(--step--1);
+  font-weight: 650;
+  color: var(--ocean);
+}
+.grad-voices__more figcaption span {
+  font-weight: 400;
+  color: var(--tide);
+  margin-left: 6px;
+}
+@media (max-width: 860px) {
+  .grad-voices__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── University of the Nations courses ──────────────────────────────────── */
+.uofn .section-head h2 {
+  max-width: 12ch;
+}
+.courses {
+  list-style: none;
+  padding: 0;
+  border-top: 1.5px solid var(--ocean);
+}
+.course {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 5fr) minmax(0, 3fr);
+  gap: 16px clamp(24px, 4vw, 64px);
+  padding-block: clamp(28px, 3.4vw, 44px);
+  border-bottom: 1px solid var(--mist);
+  align-items: start;
+}
+/* Sized so "Transformational" fits its column at every width (it overflowed between 640 and 1100px). */
+.course h3 {
+  color: var(--ocean);
+  font-size: clamp(1.5rem, 2.8vw, 2.5rem);
+  overflow-wrap: break-word;
+  font-weight: 780;
+  font-stretch: 112%;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  max-width: 14ch;
+}
+.course__line {
+  margin-top: 10px;
+  color: var(--tide);
+  max-width: 34ch;
+}
+.course__body p + p {
+  margin-top: 0.8em;
+}
+.course__body p {
+  max-width: 58ch;
+}
+.course__meta {
+  display: grid;
+  gap: 14px;
+}
+.course__meta dt {
+  font-size: var(--step--1);
+  color: var(--tide);
+}
+.course__meta dd {
+  margin: 2px 0 0;
+  font-weight: 700;
+  font-stretch: 106%;
+  color: var(--ocean);
+  line-height: 1.3;
+}
+.course__meta small {
+  display: block;
+  margin-top: 2px;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-size: var(--step--1);
+  color: var(--tide);
+}
+.uofn__after {
+  margin-top: clamp(56px, 7vw, 104px);
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 40px clamp(32px, 6vw, 112px);
+  align-items: start;
+}
+.uofn__photo {
+  border-radius: 6px;
+  overflow: hidden;
+}
+.uofn__photo img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 45% 50%;
+}
+.uofn__aside .pull-quote p {
+  color: var(--ocean);
+  font-size: clamp(1.4rem, 0.9rem + 1.5vw, 2.2rem);
+}
+.uofn__aside .pull-quote figcaption {
+  color: var(--ocean);
+}
+.uofn__aside .pull-quote figcaption span {
+  color: var(--tide);
+  opacity: 1;
+}
+.uofn__notes {
+  margin-top: clamp(40px, 5vw, 64px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px clamp(24px, 3vw, 48px);
+  border-top: 1.5px solid var(--ocean);
+  padding-top: 28px;
+}
+.uofn__notes h3 {
+  font-size: var(--step-1);
+  color: var(--ocean);
+}
+.uofn__notes p {
+  margin-top: 10px;
+}
+.uofn__notes .link {
+  color: var(--ocean);
+}
+.uofn__notes p + .link {
+  margin-top: 4px;
+}
+@media (max-width: 960px) {
+  /* The name takes the full width; description and facts sit side by side beneath it. */
+  .course {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  }
+  .course__name {
+    grid-column: 1 / -1;
+  }
+  .course h3 {
+    font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2.25rem);
+    max-width: none;
+  }
+  .uofn__after {
+    grid-template-columns: 1fr;
+  }
+  .uofn__photo {
+    max-width: 560px;
+  }
+  .uofn__photo img {
+    aspect-ratio: 3 / 2;
+  }
+}
+@media (max-width: 640px) {
+  .course {
+    grid-template-columns: 1fr;
+  }
+  .course__meta {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+  .uofn__notes {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── Life at Port YWAM ──────────────────────────────────────────────────── */
+.port__split {
+  align-items: end;
+}
+.port h2 {
+  font-size: clamp(2.5rem, 1rem + 4vw, 5rem);
+  font-weight: 820;
+  font-stretch: 118%;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  max-width: 9ch;
+}
+.port__prose {
+  margin-top: 24px;
+  color: rgb(255 255 255 / 0.88);
+}
+.port__facts {
+  margin-top: clamp(32px, 4vw, 48px);
+  padding-top: 24px;
+  border-top: 1.5px solid rgb(255 255 255 / 0.5);
+  /* Two by two, or one row of four where "30,000+" still fits its cell. */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 24px;
+}
+@media (min-width: 600px) and (max-width: 860px), (min-width: 1360px) {
+  .port__facts {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+/* Values share one line even when a label wraps. */
+.port__facts > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.port__media img {
+  aspect-ratio: 4 / 5;
+  object-position: 38% 50%;
+}
+.port__strip {
+  margin-top: clamp(56px, 7vw, 96px);
+  scroll-padding-inline: var(--gutter);
+}
+.port__strip:focus-visible {
+  outline-offset: -2px;
+}
+@media (max-width: 860px) {
+  .port__media img {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ─── How to apply ───────────────────────────────────────────────────────── */
+.apply .section-head h2 {
+  color: var(--ocean);
+}
+.apply__steps {
+  color: var(--ocean);
+}
+.apply__steps p {
+  color: var(--basalt);
+}
+.apply__grid {
+  margin-top: clamp(56px, 7vw, 96px);
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 40px clamp(32px, 6vw, 112px);
+  align-items: start;
+}
+.apply__docs h3,
+.apply__side h3 {
+  font-size: var(--step-1);
+  color: var(--ocean);
+}
+.doc-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 16px;
+  border-top: 1.5px solid var(--ocean);
+  columns: 2;
+  column-gap: clamp(24px, 3vw, 48px);
+}
+.doc-list li {
+  break-inside: avoid;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  border-bottom: 1px solid var(--mist);
+}
+/* The link fills the row, so the whole line is a 44px+ target. */
+.doc-list a {
+  flex: 1;
+  padding-block: 14px;
+  color: var(--ocean);
+  font-weight: 650;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  text-underline-offset: 0.25em;
+}
+.doc-list a:hover {
+  text-decoration-color: currentColor;
+}
+.doc-list span {
+  flex: none;
+  font-size: var(--step--1);
+  color: var(--tide);
+}
+.apply__paper {
+  margin-top: 16px;
+}
+.apply__paper .link,
+.apply .notice .link,
+.apply__pay .link,
+.apply__cta .link {
+  color: var(--ocean);
+}
+.apply .notice p {
+  margin-top: 8px;
+}
+.apply__pay {
+  margin-top: 32px;
+}
+.apply__pay p {
+  margin-top: 8px;
+}
+.apply__cta {
+  margin-top: clamp(48px, 6vw, 80px);
+  padding-top: 32px;
+  border-top: 1px solid var(--mist);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 32px;
+}
+.apply__cta p {
+  max-width: 56ch;
+}
+@media (max-width: 860px) {
+  .apply__grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .doc-list {
+    columns: 1;
+  }
+}
+
+/* ─── FAQ ────────────────────────────────────────────────────────────────── */
+.train-faq__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: 32px clamp(32px, 6vw, 112px);
+  align-items: start;
+}
+.train-faq h2 {
+  color: var(--ocean);
+  max-width: 10ch;
+}
+.train-faq__intro p {
+  margin-top: 20px;
+  max-width: 34ch;
+}
+.train-faq .link {
+  color: var(--ocean);
+}
+.train-faq .faq {
+  border-top-color: var(--ocean);
+  color: var(--ocean);
+}
+.train-faq .faq__answer {
+  color: var(--basalt);
+}
+.train-faq summary:hover {
+  color: var(--ember-deep);
+}
+@media (min-width: 861px) {
+  .train-faq__intro {
+    position: sticky;
+    top: calc(var(--header-h) + 24px);
+  }
+}
+@media (max-width: 860px) {
+  .train-faq__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── Final call ─────────────────────────────────────────────────────────── */
+.train-cta__bg {
+  position: absolute;
+  inset: 0 0 0 36%;
+  z-index: -2;
+}
+.train-cta__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 40%;
+  opacity: 0.6;
+}
+.train-cta__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, var(--night) 0%, transparent 35%),
+    linear-gradient(to right, var(--night) 0%, rgb(7 18 34 / 0.55) 35%, rgb(7 18 34 / 0.15) 100%);
+}
+@media (max-width: 760px) {
+  .train-cta__bg {
+    inset: 0;
+  }
+  .train-cta__bg::after {
+    background: rgb(7 18 34 / 0.72);
+  }
+}
+
+/* Keep phone numbers and email addresses in one piece. */
+.train-faq a[href^='tel'],
+.apply a[href^='tel'] {
+  white-space: nowrap;
+}

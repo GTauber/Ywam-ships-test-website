@@ -1,0 +1,584 @@
+/* Shared components for every page. Page-specific styles live in their own files. */
+
+/* ─── Page hero (inner pages) ────────────────────────────────────────────── */
+.page-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--night);
+  color: var(--salt);
+  min-height: min(88vh, 880px);
+  display: flex;
+  align-items: flex-end;
+  padding: calc(var(--header-h) + clamp(48px, 8vw, 112px)) 0 clamp(56px, 7vw, 96px);
+}
+.page-hero__media {
+  position: absolute;
+  inset: 0 0 0 34%;
+  z-index: -2;
+}
+.page-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.page-hero__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, var(--night) 0%, rgb(7 18 34 / 0.75) 22%, rgb(7 18 34 / 0.15) 60%, rgb(7 18 34 / 0.25) 100%),
+    linear-gradient(to top, var(--night) 0%, transparent 40%);
+}
+.page-hero canvas[data-embers] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.page-hero h1 {
+  font-size: clamp(3rem, 1rem + 6.4vw, 7.4rem);
+  font-weight: 820;
+  font-stretch: 118%;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  max-width: 11ch;
+}
+.page-hero__lede {
+  margin-top: clamp(20px, 2.4vw, 32px);
+  font-size: var(--step-1);
+  line-height: 1.5;
+  max-width: 44ch;
+  color: rgb(255 255 255 / 0.86);
+}
+.page-hero__actions {
+  margin-top: clamp(24px, 3vw, 40px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.page-hero__place {
+  margin-bottom: 20px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--step-1);
+  color: var(--lagoon);
+}
+@media (max-width: 760px) {
+  .page-hero {
+    min-height: 92vh;
+  }
+  .page-hero__media {
+    inset: 0;
+  }
+  .page-hero__media::after {
+    background: linear-gradient(to top, var(--night) 18%, rgb(7 18 34 / 0.7) 55%, rgb(7 18 34 / 0.35) 100%);
+  }
+}
+
+/* ─── Section heads, prose, splits ───────────────────────────────────────── */
+.section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  gap: 20px clamp(32px, 6vw, 96px);
+  align-items: end;
+  margin-bottom: clamp(36px, 5vw, 72px);
+}
+.section-head p {
+  max-width: 46ch;
+}
+.on-light .section-head h2,
+.section-head.on-light h2 {
+  color: var(--ocean);
+}
+.prose {
+  max-width: var(--measure);
+}
+.prose p + p,
+.prose p + ul,
+.prose ul + p {
+  margin-top: 1em;
+}
+.prose ul {
+  padding-left: 1.2em;
+}
+.prose li + li {
+  margin-top: 0.4em;
+}
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 96px);
+  align-items: center;
+}
+.split--reverse > :first-child {
+  order: 2;
+}
+.split__media {
+  border-radius: 6px;
+  overflow: hidden;
+}
+.split__media img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+.split h2 + p,
+.split h2 + .prose {
+  margin-top: 22px;
+}
+@media (max-width: 860px) {
+  .section-head,
+  .split {
+    grid-template-columns: 1fr;
+  }
+  .split--reverse > :first-child {
+    order: 0;
+  }
+  .split__media img {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ─── Facts: a big value over a small label ──────────────────────────────── */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 24px 40px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.facts dt,
+.facts .facts__label {
+  font-size: var(--step--1);
+  color: var(--tide);
+}
+.on-dark .facts dt,
+.on-ocean .facts dt,
+.on-dark .facts .facts__label,
+.on-ocean .facts .facts__label {
+  color: var(--haze);
+}
+.facts dd,
+.facts strong {
+  display: block;
+  margin: 4px 0 0;
+  font-size: var(--step-2);
+  font-weight: 760;
+  font-stretch: 112%;
+  line-height: 1.1;
+}
+
+/* ─── Steps (only for real sequences) ───────────────────────────────────── */
+.steps {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 32px clamp(20px, 3vw, 40px);
+  counter-reset: step;
+}
+.steps li {
+  counter-increment: step;
+  padding-top: 20px;
+  border-top: 1.5px solid currentColor;
+}
+.steps li::before {
+  content: counter(step);
+  display: block;
+  font-size: var(--step-3);
+  font-weight: 820;
+  font-stretch: 118%;
+  line-height: 1;
+  color: var(--ember-deep);
+  margin-bottom: 14px;
+}
+.on-dark .steps li::before,
+.on-ocean .steps li::before {
+  color: var(--ember);
+}
+.steps h3 {
+  font-size: var(--step-1);
+}
+.steps p {
+  margin-top: 8px;
+}
+
+/* ─── Rows: a list with big names, used for departments, ways to give ─── */
+.rows {
+  list-style: none;
+  padding: 0;
+  border-top: 1.5px solid currentColor;
+}
+.rows > li {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 6fr) minmax(0, 2fr);
+  gap: 16px clamp(24px, 4vw, 56px);
+  padding-block: clamp(22px, 3vw, 36px);
+  border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  align-items: start;
+}
+.rows h3 {
+  font-size: var(--step-2);
+}
+.rows__meta {
+  justify-self: end;
+  text-align: right;
+  font-size: var(--step--1);
+}
+@media (max-width: 860px) {
+  .rows > li {
+    grid-template-columns: 1fr;
+  }
+  .rows__meta {
+    justify-self: start;
+    text-align: left;
+  }
+}
+
+/* ─── Chips and tags ─────────────────────────────────────────────────────── */
+.chips,
+.roles {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+}
+.chips li,
+.roles li {
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.07);
+  font-size: 0.9375rem;
+}
+.on-light .chips li,
+.chips.on-light li {
+  background: var(--foam);
+  color: var(--ocean);
+}
+
+/* ─── FAQ ────────────────────────────────────────────────────────────────── */
+.faq {
+  border-top: 1.5px solid currentColor;
+}
+.faq details {
+  border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+}
+.faq summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 22px 0;
+  font-weight: 700;
+  font-stretch: 106%;
+  font-size: var(--step-1);
+}
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+.faq summary::after {
+  content: '';
+  flex: none;
+  width: 14px;
+  height: 14px;
+  background:
+    linear-gradient(currentColor, currentColor) center / 100% 2px no-repeat,
+    linear-gradient(currentColor, currentColor) center / 2px 100% no-repeat;
+  transition: transform 0.35s var(--ease-out);
+}
+.faq details[open] summary::after {
+  transform: rotate(45deg);
+}
+.faq .faq__answer {
+  padding: 0 0 26px;
+  max-width: 64ch;
+}
+.faq .faq__answer p + p {
+  margin-top: 0.8em;
+}
+
+/* ─── Notice: an important aside ─────────────────────────────────────────── */
+.notice {
+  padding: 20px 24px;
+  border-radius: 6px;
+  background: rgb(80 194 219 / 0.1);
+  box-shadow: inset 3px 0 0 var(--lagoon);
+  max-width: 64ch;
+}
+.on-light .notice,
+.notice.on-light {
+  background: var(--foam);
+  box-shadow: inset 3px 0 0 var(--ocean);
+}
+
+/* ─── Pull quote ─────────────────────────────────────────────────────────── */
+.pull-quote p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.5rem, 0.9rem + 2vw, 2.6rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  max-width: 32ch;
+}
+.pull-quote footer,
+.pull-quote figcaption {
+  margin-top: 20px;
+  font-weight: 650;
+}
+.pull-quote footer span,
+.pull-quote figcaption span {
+  display: block;
+  font-weight: 400;
+  opacity: 0.75;
+}
+
+/* ─── Photo strip: a row of photos you can scroll or drag ────────────────── */
+.photo-strip {
+  display: flex;
+  gap: clamp(12px, 1.6vw, 20px);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  padding-inline: var(--gutter);
+  padding-bottom: 12px;
+  scrollbar-width: thin;
+}
+.photo-strip figure {
+  flex: none;
+  width: clamp(240px, 30vw, 420px);
+  scroll-snap-align: start;
+}
+.photo-strip img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.photo-strip figcaption {
+  margin-top: 10px;
+  font-size: var(--step--1);
+  opacity: 0.8;
+}
+
+/* ─── Call to action band ────────────────────────────────────────────────── */
+.cta-band {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--night);
+  color: var(--salt);
+  padding-block: clamp(96px, 12vw, 176px);
+}
+.cta-band canvas[data-embers] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.cta-band h2 {
+  font-size: clamp(2.6rem, 1rem + 5.4vw, 6.4rem);
+  font-weight: 820;
+  font-stretch: 120%;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  max-width: 12ch;
+}
+.cta-band p {
+  margin-top: 24px;
+  font-size: var(--step-1);
+  max-width: 44ch;
+  color: rgb(255 255 255 / 0.84);
+}
+.cta-band__actions {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ─── Filters, tags and the departures board (home and Train) ───────────── */
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.filter {
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.3);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  transition: background 0.25s, box-shadow 0.25s, color 0.25s;
+}
+.filter:hover {
+  box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.7);
+}
+.filter[aria-pressed='true'] {
+  background: var(--salt);
+  color: var(--ocean);
+  box-shadow: none;
+}
+.board {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+.board th {
+  text-align: left;
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--haze);
+  padding: 0 16px 14px 0;
+  border-bottom: 1.5px solid rgb(255 255 255 / 0.5);
+}
+.board td {
+  padding: 22px 16px 22px 0;
+  border-bottom: 1px solid rgb(255 255 255 / 0.14);
+  vertical-align: top;
+}
+.board tbody tr {
+  transition: background 0.25s;
+}
+.board tbody tr:hover {
+  background: rgb(255 255 255 / 0.04);
+}
+.board tr[hidden] {
+  display: none;
+}
+.board__date {
+  white-space: nowrap;
+  font-weight: 700;
+  font-stretch: 110%;
+  font-size: var(--step-1);
+}
+.board__date small {
+  display: block;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-size: var(--step--1);
+  color: var(--haze);
+  margin-top: 4px;
+}
+.board__school {
+  font-weight: 750;
+  font-stretch: 110%;
+  font-size: var(--step-2);
+  line-height: 1.1;
+}
+.board__school a {
+  text-decoration: none;
+}
+.board__school a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+.board__school em {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--step-0);
+  color: rgb(255 255 255 / 0.78);
+}
+.tag {
+  display: inline-block;
+  padding: 4px 11px;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 650;
+  white-space: nowrap;
+  box-shadow: inset 0 0 0 1.5px currentColor;
+}
+.tag--dts {
+  color: var(--ember);
+}
+/* On navy, plain ember is too dim for small text; lift it. */
+.on-ocean .tag--dts,
+.departures .tag--dts {
+  color: #ff9a76;
+}
+.tag--uofn {
+  color: var(--lagoon);
+}
+.board__status {
+  white-space: nowrap;
+  text-align: right;
+}
+.board__status .open::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--lagoon);
+  box-shadow: 0 0 0 3px rgb(80 194 219 / 0.2);
+  vertical-align: 0.1em;
+}
+.board__status .countdown {
+  display: block;
+  font-size: var(--step--1);
+  color: var(--haze);
+  margin-top: 6px;
+}
+.board__foot {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 32px;
+  align-items: center;
+  justify-content: space-between;
+  color: rgb(255 255 255 / 0.78);
+}
+@media (max-width: 760px) {
+  .board thead {
+    display: none;
+  }
+  .board,
+  .board tbody,
+  .board tr,
+  .board td {
+    display: block;
+  }
+  .board tr {
+    padding: 20px 0;
+    border-bottom: 1px solid rgb(255 255 255 / 0.14);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px 16px;
+  }
+  .board td {
+    border: 0;
+    padding: 0;
+  }
+  .board__school {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .board td.board__status {
+    grid-column: 1 / -1;
+    text-align: left;
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+  }
+  .board__status .countdown {
+    margin-top: 0;
+  }
+}
+
+
+/* ─── 404 ────────────────────────────────────────────────────────────────── */
+.page-hero.lost {
+  min-height: 100vh;
+  align-items: center;
+}

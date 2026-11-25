@@ -1,0 +1,536 @@
+/* Stories page. Shared pieces (page hero, section heads, filters, tags, notice, CTA band) come from components.css. */
+
+/* ─── Hero: shorter than other inner pages, the beach does the talking ──── */
+.page-hero.st-hero {
+  min-height: min(70vh, 700px);
+}
+.st-hero .page-hero__media img {
+  object-position: 50% 62%;
+}
+@media (max-width: 760px) {
+  .page-hero.st-hero {
+    min-height: 76vh;
+  }
+}
+
+/* ─── Featured story ─────────────────────────────────────────────────────── */
+.st-feature__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 32px clamp(32px, 5vw, 80px);
+  align-items: end;
+}
+.st-feature__media {
+  margin: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--mist);
+}
+.st-feature__media img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+.st-feature__place {
+  font-size: var(--step-1);
+  color: var(--ocean);
+  margin-bottom: 14px;
+}
+.st-feature h2 {
+  color: var(--ocean);
+}
+.st-feature__intro > p:last-child {
+  margin-top: 22px;
+  max-width: 44ch;
+}
+
+/* The human voice is the loudest thing in this section. */
+.st-feature__quote,
+.st-feature__more {
+  margin-left: clamp(0px, 8.333%, 136px);
+}
+.st-feature__quote {
+  margin-top: clamp(56px, 7vw, 112px);
+  margin-right: 0;
+  margin-bottom: 0;
+}
+.st-feature__quote p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.6rem, 0.95rem + 2.2vw, 3.1rem);
+  line-height: 1.16;
+  letter-spacing: -0.012em;
+  color: var(--ocean);
+  max-width: 34ch;
+  text-indent: -0.42em; /* hang the opening quote mark */
+}
+.st-feature__quote figcaption {
+  margin-top: 24px;
+  font-weight: 650;
+}
+.st-feature__quote figcaption span {
+  display: block;
+  font-weight: 400;
+  color: var(--tide);
+}
+.st-feature__more {
+  margin-top: clamp(36px, 4vw, 56px);
+  padding-top: 28px;
+  border-top: 1px solid var(--mist);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px clamp(32px, 5vw, 80px);
+  align-items: center;
+}
+.st-feature__more > p {
+  max-width: 48ch;
+}
+.st-feature__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+}
+.st-feature__actions p {
+  max-width: 26ch;
+}
+@media (max-width: 600px) {
+  .st-feature__quote p {
+    text-indent: 0;
+  }
+}
+@media (max-width: 860px) {
+  .st-feature__grid,
+  .st-feature__more {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .st-feature__quote,
+  .st-feature__more {
+    margin-left: 0;
+  }
+}
+
+/* ─── Every story: filter bar ───────────────────────────────────────────── */
+.st-index h2 {
+  color: var(--ocean);
+}
+.st-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px 32px;
+  margin-bottom: clamp(32px, 4vw, 56px);
+}
+.no-js .st-toolbar {
+  display: none;
+}
+/* The shared filter pill is drawn for dark surfaces; this is its light-surface twin. */
+.st-filters .filter {
+  color: var(--ocean);
+  box-shadow: inset 0 0 0 1.5px rgb(33 56 84 / 0.28);
+}
+.st-filters .filter:hover {
+  box-shadow: inset 0 0 0 1.5px var(--ocean);
+}
+.st-filters .filter[aria-pressed='true'] {
+  background: var(--ocean);
+  color: var(--salt);
+  box-shadow: none;
+}
+/* Tokens, not opacity: ocean at 66% on foam fell to about 4:1. Tide on foam and haze on ocean both clear 4.5:1. */
+.filter__n {
+  margin-left: 0.5em;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--tide);
+}
+.st-filters .filter[aria-pressed='true'] .filter__n {
+  color: var(--haze);
+}
+.st-count {
+  font-size: var(--step--1);
+  color: var(--tide);
+}
+
+/* ─── Every story: three tiers (lead, up to three beside it, then rows) ──── */
+.st-story {
+  position: relative;
+}
+.st-photo {
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--mist);
+}
+.st-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.st-story__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  font-size: var(--step--1);
+  color: var(--tide);
+}
+.st-story .tag {
+  color: var(--ocean);
+}
+.st-story h3 {
+  margin-top: 12px;
+  color: var(--ocean);
+}
+.st-story p {
+  margin-top: 10px;
+  max-width: 54ch;
+}
+/* The title is the link; its hit area stretches over the whole story. */
+.st-link {
+  text-decoration: none;
+}
+.st-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+.st-story:hover .st-link {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+}
+@supports selector(:has(a)) {
+  .st-link:focus-visible {
+    outline: none;
+  }
+  .st-story:has(.st-link:focus-visible) {
+    outline: 2px solid var(--ocean);
+    outline-offset: 8px;
+    border-radius: 8px;
+  }
+}
+
+.st-top {
+  display: grid;
+  grid-template-columns: minmax(0, 13fr) minmax(0, 11fr);
+  gap: clamp(28px, 3.4vw, 56px);
+  align-items: start;
+}
+.st-story--lead .st-photo {
+  aspect-ratio: 3 / 2;
+}
+.st-story--lead.has-small-photo .st-photo {
+  max-width: 26rem;
+  aspect-ratio: 4 / 5;
+}
+.st-story--lead .st-story__body {
+  margin-top: 22px;
+}
+.st-story--lead h3 {
+  font-size: var(--step-3);
+}
+.st-story--lead p {
+  font-size: var(--step-1);
+  line-height: 1.5;
+  max-width: 46ch;
+}
+/* When a topic has a single story, the lead lies on its side and takes the full width. */
+.st-top.is-solo {
+  grid-template-columns: minmax(0, 1fr);
+}
+.is-solo .st-story--lead {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+}
+.is-solo .st-story--lead .st-story__body {
+  margin-top: 0;
+}
+
+.st-beside {
+  display: grid;
+  gap: clamp(24px, 2.6vw, 36px);
+  align-content: start;
+}
+.st-story--side {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  gap: clamp(16px, 2vw, 28px);
+  align-items: start;
+}
+.st-story--side .st-photo {
+  aspect-ratio: 1;
+}
+.st-story--side h3 {
+  font-size: var(--step-2);
+  line-height: 1.12;
+}
+
+.st-rows {
+  list-style: none;
+  padding: 0;
+  margin-top: clamp(48px, 6vw, 88px);
+  border-top: 1.5px solid var(--ocean);
+}
+.st-rows > li {
+  border-bottom: 1px solid rgb(33 56 84 / 0.16);
+}
+/* Rows read like a ship's log: the date runs down the left edge. */
+.st-story--row {
+  display: grid;
+  grid-template-columns: 10rem minmax(0, 1fr) 9.5rem;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    'date body photo'
+    'tag body photo';
+  gap: 10px clamp(20px, 3vw, 48px);
+  align-items: start;
+  padding-block: clamp(22px, 2.6vw, 32px);
+}
+.st-story--row .st-story__date {
+  grid-area: date;
+  padding-top: 0.45em;
+  font-size: var(--step--1);
+  color: var(--tide);
+  font-variant-numeric: tabular-nums;
+}
+.st-story--row .st-story__body {
+  grid-area: body;
+}
+.st-story--row .st-story__tag {
+  grid-area: tag;
+}
+.st-story--row .st-photo {
+  grid-area: photo;
+  aspect-ratio: 4 / 3;
+}
+.st-story--row h3 {
+  margin-top: 0;
+  font-size: var(--step-2);
+  line-height: 1.12;
+  max-width: 30ch;
+}
+.st-story--row p {
+  margin-top: 8px;
+  color: var(--tide);
+  max-width: 60ch;
+}
+
+/* Tablet: narrow the date and photo columns so titles get room (the widest date and tag are about 121px). */
+@media (max-width: 1100px) {
+  .st-story--row {
+    grid-template-columns: 8rem minmax(0, 1fr) 8rem;
+  }
+}
+@media (max-width: 960px) {
+  .st-top,
+  .is-solo .st-story--lead {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .is-solo .st-story--lead .st-story__body {
+    margin-top: 22px;
+  }
+  .st-beside {
+    margin-top: 12px;
+  }
+}
+@media (max-width: 760px) {
+  .st-story--side {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  }
+  .st-story--side h3 {
+    font-size: var(--step-1);
+  }
+  .st-story--side p {
+    display: none;
+  }
+  .st-story--row {
+    grid-template-columns: 88px minmax(0, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas:
+      'photo date'
+      'photo body'
+      'photo tag';
+    gap: 6px 16px;
+  }
+  .st-story--row .st-story__date,
+  .st-story--row .st-story__tag {
+    padding-top: 0;
+  }
+  .st-story--row .st-story__tag {
+    margin-top: 4px;
+  }
+  .st-story--row .st-photo {
+    aspect-ratio: 1;
+  }
+  .st-story--row h3 {
+    font-size: var(--step-1);
+    line-height: 1.2;
+  }
+  .st-story--row p {
+    display: none;
+  }
+  .st-story--lead p {
+    font-size: var(--step-0);
+  }
+}
+
+/* ─── The film ───────────────────────────────────────────────────────────── */
+.st-film__frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--night-2);
+}
+.st-film__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 70%;
+}
+.st-film__frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgb(7 18 34 / 0.3);
+  pointer-events: none;
+}
+.st-film__frame.is-playing::after {
+  display: none;
+}
+.st-film__play {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 28%; /* sits in the open sky, above the heads of the crew in the boat */
+  transform: translate(-50%, -50%);
+  min-height: 60px;
+  padding: 1em 1.8em 1em 1.5em;
+  font-size: var(--step-1);
+}
+.st-film__play:active {
+  transform: translate(-50%, calc(-50% + 1px));
+}
+.st-film__play svg {
+  width: 1.1em;
+  height: 1.1em;
+}
+.st-film__frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.st-film__note {
+  margin-top: 16px;
+  max-width: 64ch;
+}
+.st-film__note .link {
+  color: var(--lagoon);
+}
+@media (max-width: 520px) {
+  .st-film__frame {
+    aspect-ratio: 4 / 3;
+  }
+  .st-film__frame.is-playing {
+    aspect-ratio: 16 / 9;
+  }
+  .st-film__play {
+    top: 24%;
+    min-height: 48px;
+    font-size: var(--step-0);
+    padding: 0.8em 1.4em 0.8em 1.2em;
+  }
+}
+
+/* ─── Keep up with the ship ─────────────────────────────────────────────── */
+.st-keep__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 40px clamp(32px, 6vw, 96px);
+  align-items: start;
+}
+.st-keep h2 {
+  color: var(--ocean);
+  max-width: 12ch;
+}
+.st-keep__notice {
+  margin-top: 28px;
+}
+.st-keep__links {
+  list-style: none;
+  padding: 0;
+  border-top: 1.5px solid var(--ocean);
+}
+.st-keep__links li {
+  position: relative;
+  padding-block: 22px 24px;
+  border-bottom: 1px solid var(--mist);
+}
+.st-keep__links a {
+  font-size: var(--step-2);
+  font-weight: 750;
+  font-stretch: 110%;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--ocean);
+  text-decoration: none;
+}
+.st-keep__links a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+.st-keep__links li:hover a {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+}
+.st-keep__links p {
+  margin-top: 6px;
+  color: var(--tide);
+}
+@media (max-width: 860px) {
+  .st-keep__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ─── Closing call: a village at dusk, cookfires lit ────────────────────── */
+.st-cta__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+.st-cta__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 70%;
+  opacity: 0.6;
+  /* Fade the photo out before the section edge so no seam shows against the footer. */
+  -webkit-mask-image: linear-gradient(to top, transparent 3%, #000 50%);
+  mask-image: linear-gradient(to top, transparent 3%, #000 50%);
+}
+.st-cta__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, var(--night) 0%, rgb(7 18 34 / 0.72) 42%, rgb(7 18 34 / 0.3) 100%),
+    linear-gradient(to top, var(--night) 0%, transparent 45%);
+}
+@media (max-width: 760px) {
+  .st-cta__bg::after {
+    background: linear-gradient(to top, var(--night) 8%, rgb(7 18 34 / 0.7) 50%, rgb(7 18 34 / 0.25) 100%);
+  }
+}
+/* Close the hairline that a fractional page height can leave between this band and the footer. */
+.st-cta {
+  box-shadow: 0 2px 0 var(--night);
+}

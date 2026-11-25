@@ -1,0 +1,37 @@
+3D / texture / HDRI asset credits for the YWAM Ships Kona site
+==============================================================
+Full details (sources, sizes, triangle counts, usage notes) are in the research report 3d-assets.md.
+
+ATTRIBUTION REQUIRED (CC-BY 3.0, https://creativecommons.org/licenses/by/3.0/)
+Show these lines on a public credits page or in the site footer:
+- "Cruiseship" by Poly by Google [CC-BY 3.0] via Poly Pizza (https://poly.pizza/m/7j5X_ALVzlk). Modified: meshes merged, re-oriented to +Z, centered.
+    -> ships/poly-expedition-cruiseship.glb
+- "Tugboat" by Poly by Google [CC-BY 3.0] via Poly Pizza (https://poly.pizza/m/eEbXA8_6MeJ)
+    -> ships/poly-coastal-freighter.glb
+- "Cruise liner" by jeremy [CC-BY 3.0] via Poly Pizza (https://poly.pizza/m/aOikPp4rz68)
+    -> ships/jeremy-cruise-liner.glb
+- "Boat" by Poly by Google [CC-BY 3.0] via Poly Pizza (https://poly.pizza/m/8vekojz4Abf). Modified: re-centered.
+    -> boats/poly-rib-boat.glb
+- "Island" by Poly by Google [CC-BY 3.0] via Poly Pizza (https://poly.pizza/m/bzLVwG4AzvA)
+    -> islands/poly-island-palms.glb
+- "Island" by Poly by Google [CC-BY 3.0] via Poly Pizza (https://poly.pizza/m/fG9iP5afr7U)
+    -> islands/poly-island-lagoon.glb
+- "Volcano" by Poly by Google [CC-BY 3.0] via Poly Pizza (https://poly.pizza/m/8gkFBBcS6aM)
+    -> islands/poly-volcano.glb
+- "Volcano" by Poly by Google [CC-BY 3.0] via Poly Pizza (https://poly.pizza/m/4xoTMiF0D5J). Modified: texture downscaled 2048 -> 512 px.
+    -> islands/poly-volcano-erupting.glb
+
+CC0 1.0 (public domain dedication, credit optional)
+- Quaternius (https://quaternius.com) via Poly Pizza: Cruise Ship (yq9EKmEmfC), Lifeboat (Bkd4KKQA4O),
+  Palm Tree (A6cKJYFsIb), Palm Tree (nr1B5DbICA), Whale (JGFwp6xWgk), Dolphin (3LzFgI3GLO)
+- Kenney (https://kenney.nl): Watercraft Kit 2.1 (boats/kenney-speedboat), Particle Pack 1.1 (textures/particles)
+- Poly Haven (https://polyhaven.com): HDRIs qwantani_dusk_2_puresky, qwantani_moonrise_puresky (Greg Zaal, Jarod Guest),
+  belfast_sunset_puresky (Dimitrios Savva, Greg Zaal, Jarod Guest) in ../hdri/
+
+PUBLIC DOMAIN
+- Natural Earth (https://www.naturalearthdata.com): geo/*.geojson. "Made with Natural Earth."
+- NASA Earth Observatory: Blue Marble Next Generation (Dec 2004, topo + bathy, Reto Stockli) and Black Marble 2016
+  (textures/earth). Suggested credit: "Earth imagery: NASA Earth Observatory". Do not use the NASA logo or imply endorsement.
+
+MIT (three.js repository, https://github.com/mrdoob/three.js, tag r170)
+- textures/water/waternormals.jpg, Water_1_M_Normal.jpg, Water_2_M_Normal.jpg, textures/flare/spark1.png

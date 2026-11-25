@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Give: YWAM Ships Kona</title>
+    <meta
+      name="description"
+      content="No one at YWAM Ships Kona draws a salary, so your gift goes to the mission. Give once or every month as a WaveMaker, or by check, stock, wire or app. 501(c)(3) nonprofit, EIN 45-3452689, ECFA accredited."
+    />
+    <meta name="theme-color" content="#071222" />
+    <link rel="icon" href="/assets/img/brand/favicon-blue-512.png" />
+    <link rel="apple-touch-icon" href="/assets/img/brand/favicon-blue-512.png" />
+    <meta property="og:title" content="Give: YWAM Ships Kona" />
+    <meta property="og:description" content="Every gift goes to work. No salaries, from our founder to our janitor." />
+    <meta property="og:image" content="/assets/img/eye-patient-smile-patch.jpg" />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <!-- @include partials/header.html page="give" -->
+
+    <main id="main">
+      <!-- ═══ Hero: the promise ═══ -->
+      <section class="page-hero give-hero" aria-labelledby="give-title">
+        <div class="page-hero__media">
+          <img
+            src="/assets/img/eye-patient-smile-patch.jpg"
+            alt="A man grinning after eye surgery, a green shield taped over one eye and the sea behind him"
+            width="2560"
+            height="1195"
+            fetchpriority="high"
+          />
+        </div>
+        <div class="wrap">
+          <h1 id="give-title">Every gift goes to work.</h1>
+          <p class="page-hero__lede">
+            From our founder to our janitor, no one at YWAM Ships Kona gets a salary. We all raise our own support, so
+            what you give goes to the mission: free medical care and the hope of Jesus for islands only a ship can
+            reach.
+          </p>
+          <div class="page-hero__actions">
+            <a class="btn" href="#give">Give now</a>
+            <a class="btn btn--ghost" href="#monthly">Give monthly</a>
+          </div>
+          <p class="give-hero__trust">
+            A 501(c)(3) nonprofit, accredited by ECFA.
+            <a class="link" href="#trust">Our commitment to donors</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- ═══ The chooser: see what a gift does, then continue to the real giving page ═══ -->
+      <section class="give section on-ocean" id="give" aria-labelledby="chooser-title">
+        <div class="wrap chooser" data-chooser>
+          <div class="chooser__intro">
+            <h2 id="chooser-title">See what your gift does</h2>
+            <p>
+              Choose every month or just once. You'll enter your exact amount on our secure giving page, where you can
+              also choose how to pay and add a designation if you have one.
+            </p>
+            <p class="chooser__aside">
+              Prefer to mail a check or give stock? See <a href="#other-ways">other ways to give</a>.
+            </p>
+          </div>
+
+          <div class="chooser__panel">
+            <fieldset class="freq">
+              <legend>How often?</legend>
+              <div class="freq__track">
+                <input type="radio" name="frequency" id="freq-monthly" value="monthly" checked />
+                <label for="freq-monthly">Every month</label>
+                <input type="radio" name="frequency" id="freq-once" value="once" />
+                <label for="freq-once">Just once</label>
+              </div>
+            </fieldset>
+
+            <fieldset class="amounts">
+              <legend>Monthly amount</legend>
+              <div class="amounts__list">
+                <div class="amount">
+                  <input type="radio" name="amount" id="amt-33" value="33" checked />
+                  <label for="amt-33"><span class="amount__n">$33</span><span class="amount__what">one patient</span></label>
+                </div>
+                <div class="amount">
+                  <input type="radio" name="amount" id="amt-66" value="66" />
+                  <label for="amt-66"><span class="amount__n">$66</span><span class="amount__what">two patients</span></label>
+                </div>
+                <div class="amount">
+                  <input type="radio" name="amount" id="amt-99" value="99" />
+                  <label for="amt-99"><span class="amount__n">$99</span><span class="amount__what">three people</span></label>
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="readout">
+              <div class="readout__item" data-show="m33">
+                <img
+                  src="/assets/img/eye-care-exam-elder.jpg"
+                  alt="A volunteer in orange glasses checks the eye of an older woman in a red headwrap, outdoors on the grass"
+                  width="2400"
+                  height="1600"
+                  loading="lazy"
+                />
+                <div>
+                  <p class="readout__count">One patient</p>
+                  <p>
+                    Every month, $33 helps bring healing in Jesus' name to someone on a remote island who is suffering
+                    from a treatable medical problem.
+                  </p>
+                </div>
+              </div>
+              <div class="readout__item" data-show="m66">
+                <img
+                  src="/assets/img/medical-nurse-babies-laughing.jpg"
+                  alt="A volunteer nurse makes a baby laugh with a finger puppet while mothers hold their infants"
+                  width="1952"
+                  height="1522"
+                  loading="lazy"
+                />
+                <div>
+                  <p class="readout__count">Two patients</p>
+                  <p>Every month, $66 helps two patients in desperate need, on islands where care is hard to reach.</p>
+                </div>
+              </div>
+              <div class="readout__item" data-show="m99">
+                <img
+                  src="/assets/img/medical-eye-surgery-microscope.jpg"
+                  alt="A surgeon in a patterned cap operates through an eye microscope, a scrub nurse assisting"
+                  width="2400"
+                  height="1600"
+                  loading="lazy"
+                />
+                <div>
+                  <p class="readout__count">Three people</p>
+                  <p>
+                    Every month, $99 provides life-changing treatment, such as cataract surgery and dental extractions,
+                    for three people who may never get care any other way.
+                  </p>
+                </div>
+              </div>
+              <div class="readout__item" data-show="once">
+                <img
+                  src="/assets/img/kids-trio-ship-harbor.jpg"
+                  alt="Three children stand arm in arm, smiling, with a white ship moored behind them"
+                  width="2201"
+                  height="1461"
+                  loading="lazy"
+                />
+                <div>
+                  <p class="readout__count">Any amount</p>
+                  <p>
+                    A one-time gift goes where the need is greatest, or to the purpose you name on the next page.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <p class="chooser__note">
+              Monthly givers are called WaveMakers. When you join, we'll send you a Micronesian shell ornament,
+              handmade by Pacific islanders, to say thank you.
+            </p>
+
+            <div class="chooser__go chooser__go--monthly">
+              <a class="btn" href="https://ywamships.givingpage.org/wavemakers">Continue to our secure giving page</a>
+              <p>Opens our WaveMakers page on ywamships.givingpage.org.</p>
+            </div>
+            <div class="chooser__go chooser__go--once">
+              <a class="btn" href="https://ywamships.givingpage.org/donate">Continue to our secure giving page</a>
+              <p>Opens our giving page on ywamships.givingpage.org.</p>
+            </div>
+
+            <p class="visually-hidden" aria-live="polite" data-chooser-status></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ Why it goes further: nobody is paid ═══ -->
+      <section class="why section on-light" aria-labelledby="why-title">
+        <div class="wrap">
+          <div class="split">
+            <div>
+              <h2 id="why-title">Everyone on board pays their own way.</h2>
+              <div class="prose">
+                <p>
+                  Every member of our staff and crew, from the captain to the cooks, raises their own support from the
+                  people who send them.
+                </p>
+                <p>
+                  Volunteers go a step further and pay to serve. Their outreach fee covers their own food and
+                  accommodation and helps with the ship's upkeep.
+                </p>
+                <p>
+                  So your donation goes to the mission itself: reaching people on islands with no road, no bridge and
+                  no runway.
+                </p>
+              </div>
+            </div>
+            <figure class="split__media why__media">
+              <img
+                src="/assets/img/stories/story-of-liberty.jpg"
+                alt="About thirty-five volunteers in navy YWAM shirts on a black-sand beach, some holding coconuts, with the ship moored behind them"
+                width="1800"
+                height="1200"
+                loading="lazy"
+              />
+            </figure>
+          </div>
+
+          <ul class="facts why__facts">
+            <li>
+              <strong>100%</strong>
+              <span class="facts__label">of our staff are volunteers</span>
+            </li>
+            <li>
+              <strong>Free</strong>
+              <span class="facts__label">medical care, in clinics ashore and surgery on board</span>
+            </li>
+            <li>
+              <strong>By invitation</strong>
+              <span class="facts__label">we go where local governments ask us, and build long-term partnerships</span>
+            </li>
+          </ul>
+
+          <div class="glasses">
+            <img
+              src="/assets/img/stories/so-little-big-difference.jpg"
+              alt="An optical volunteer with a clipboard smiles at an elderly woman who holds a hand up to her eyes"
+              width="1800"
+              height="1200"
+              loading="lazy"
+            />
+            <div class="glasses__quote">
+              <figure class="pull-quote">
+                <blockquote>
+                  <p>
+                    “The glasses we handed out cost only a dollar to make. To them, it felt like we were giving them a
+                    million dollars.”
+                  </p>
+                </blockquote>
+                <figcaption>
+                  Susan, optical team
+                  <span class="place">Rai Coast, Papua New Guinea, 2025</span>
+                </figcaption>
+              </figure>
+              <a
+                class="link glasses__more"
+                href="https://www.ywamshipskona.org/2025/08/01/it-takes-so-little-to-make-such-a-big-difference/"
+                >Read Susan's story</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ Give to something specific ═══ -->
+      <section class="projects section on-foam on-light" id="projects" aria-labelledby="projects-title">
+        <div class="wrap">
+          <div class="section-head">
+            <h2 id="projects-title">Give to something specific</h2>
+            <p>
+              Name a purpose and your gift is used for it, unless you give us permission to redirect it. Gifts without a
+              purpose go where the need is greatest.
+            </p>
+          </div>
+
+          <ul class="rows projects__rows">
+            <li>
+              <h3>The m/v YWAM Liberty</h3>
+              <p>
+                For 29 years she was L'Astrolabe, resupplying a French research station in Antarctica. Now the shipping
+                containers on her deck become an eye-surgery theatre, a dental clinic, a TB lab and a pharmacy. Help keep
+                her serving from her home port of Madang.
+              </p>
+              <p class="rows__meta">
+                <a class="link" href="https://www.ywamshipskona.org/the-fleet/m-v-ywam-liberty/">Give to the Liberty</a>
+              </p>
+            </li>
+            <li>
+              <h3>Medical outreach</h3>
+              <p>
+                Free care where there is none: dental clinics, primary health care, optometry, immunizations, cataract
+                surgery and hygiene education. We pair your gift with the outreach where it fits.
+              </p>
+              <p class="rows__meta">
+                <a class="link" href="https://www.ywamshipskona.org/medical-outreach-sponsorship/">Give to medical outreach</a>
+              </p>
+            </li>
+            <li>
+              <h3>The Flotilla</h3>
+              <p>
+                Started in 2020, the Flotilla works with private yacht owners to carry mission teams to isolated
+                islands with health care, clean water, education, Bible translation and the Gospel.
+              </p>
+              <p class="rows__meta">
+                <a class="link" href="https://ywamships.givingpage.org/flotilla">Give to the Flotilla</a>
+              </p>
+            </li>
+            <li>
+              <h3>A missionary you know</h3>
+              <p>
+                Missionary support can only go to people who are actively serving as international missionaries and
+                hold a valid religious visa. Please check they qualify before you give.
+              </p>
+              <p class="rows__meta">
+                <a class="link" href="https://www.ywamshipskona.org/missionary-support-limits/">Read the limits and give</a>
+              </p>
+            </li>
+          </ul>
+
+          <div class="notice projects__now">
+            <p>
+              <strong>Where the Liberty is now.</strong> In 2025, her first year based in
+              <span class="place">Madang, Papua New Guinea</span>, her teams provided more than 20,000 medical services.
+              As of April 2026, outreach voyages were paused while she supported health services in Madang town, at the
+              request of Modilon Hospital.
+              <a class="link" href="/stories.html">Latest stories from the ship</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ Monthly: WaveMakers ═══ -->
+      <section class="monthly section on-dark" id="monthly" aria-labelledby="monthly-title">
+        <div class="wrap split split--reverse">
+          <div class="monthly__body">
+            <h2 id="monthly-title">Become a WaveMaker</h2>
+            <p class="lede">
+              WaveMakers give every month, and they are the lifeline of YWAM Ships Kona. Steady gifts help our teams
+              serve isolated villages across the South Pacific.
+            </p>
+
+            <ul class="tiers">
+              <li><strong>$33</strong><span>a month helps one patient with a treatable medical problem</span></li>
+              <li><strong>$66</strong><span>a month helps two patients in desperate need</span></li>
+              <li>
+                <strong>$99</strong
+                ><span>a month provides treatment such as cataract surgery and dental extractions for three people</span>
+              </li>
+            </ul>
+
+            <div class="prose monthly__more">
+              <p>
+                Your support also helps translate the Bible and the Jesus Film into the languages people speak at home.
+              </p>
+              <p>
+                To say thank you, we'll send every new WaveMaker a Micronesian shell ornament, handmade by Pacific
+                islanders.
+              </p>
+            </div>
+
+            <div class="monthly__actions">
+              <a class="btn" href="https://ywamships.givingpage.org/wavemakers">Become a WaveMaker</a>
+            </div>
+
+            <h3 class="monthly__paths-title">Other ways to give every month</h3>
+            <ul class="monthly__paths">
+              <li>
+                <a class="link" href="https://ywamships.givingpage.org/donate">Give monthly to a specific purpose</a>
+              </li>
+              <li>
+                <a class="link" href="https://www.ywamshipskona.org/missionary-support-limits/">Support a missionary every month</a>
+              </li>
+            </ul>
+          </div>
+          <figure class="split__media">
+            <img
+              src="/assets/img/village-child-portrait.jpg"
+              alt="A small boy grins at the camera, his hands folded over a short stick"
+              width="1707"
+              height="2560"
+              loading="lazy"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <!-- ═══ Other ways to give ═══ -->
+      <section class="other section on-light" id="other-ways" aria-labelledby="other-title">
+        <div class="wrap">
+          <div class="section-head">
+            <h2 id="other-title">Other ways to give</h2>
+            <p>
+              By mail, from your investments, or from wherever you are in the world. Questions about any of these? Email
+              <a class="link" href="mailto:info@ywamships.net">info@ywamships.net</a> or call
+              <a class="link" href="tel:+18087579150">+1 (808) 757-9150</a>.
+            </p>
+          </div>
+
+          <div class="ledger">
+            <div class="ledger__group">
+              <h3>By mail</h3>
+              <div class="ledger__items">
+                <div class="method">
+                  <div>
+                    <h4>A check from the US</h4>
+                    <p>Make checks payable to “YWAM Ships Kona” and mail them to:</p>
+                    <address>
+                      Accounting, YWAM Ships Kona<br />
+                      75-5687 Alii Drive<br />
+                      Kailua-Kona, HI 96740
+                    </address>
+                    <p class="method__note">
+                      We also accept money orders and gifts in kind. Tax receipts are issued to US residents only.
+                    </p>
+                  </div>
+                  <div class="method__act">
+                    <button
+                      class="btn btn--ghost btn--sm"
+                      type="button"
+                      data-copy="Accounting, YWAM Ships Kona, 75-5687 Alii Drive, Kailua-Kona, HI 96740"
+                      data-copied="US mailing address copied"
+                      hidden
+                    >
+                      Copy address<span class="visually-hidden"> for US checks</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="method">
+                  <div>
+                    <h4>A cheque from Canada</h4>
+                    <p>
+                      Make cheques payable to “Youth With A Mission” and write “YWAM Ships Kona” in the comment line.
+                      Mail them to:
+                    </p>
+                    <address>
+                      YWAM<br />
+                      PO Box 57100<br />
+                      RPO East Hastings<br />
+                      Vancouver, BC V5K 5G6
+                    </address>
+                  </div>
+                  <div class="method__act">
+                    <button
+                      class="btn btn--ghost btn--sm"
+                      type="button"
+                      data-copy="YWAM, PO Box 57100, RPO East Hastings, Vancouver, BC V5K 5G6"
+                      data-copied="Canadian mailing address copied"
+                      hidden
+                    >
+                      Copy address<span class="visually-hidden"> for Canadian cheques</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ledger__group">
+              <h3>From your investments</h3>
+              <div class="ledger__items">
+                <div class="method">
+                  <div>
+                    <h4>Stock and other appreciated assets</h4>
+                    <p>
+                      Give stocks, real estate or other assets that have grown in value. You're credited with their full
+                      fair market value, and you avoid the capital gains tax on them. Contact us and we'll help you
+                      complete the gift accurately.
+                    </p>
+                  </div>
+                  <div class="method__act">
+                    <a class="link" href="mailto:info@ywamships.net?subject=Giving%20stock">Email us about stock</a>
+                  </div>
+                </div>
+                <div class="method">
+                  <div>
+                    <h4>Your IRA's required minimum distribution</h4>
+                    <p>A gift from your RMD isn't reported as taxable income.</p>
+                  </div>
+                  <div class="method__act">
+                    <a class="link" href="mailto:info@ywamships.net?subject=Giving%20from%20my%20IRA">Email us about your IRA</a>
+                  </div>
+                </div>
+                <div class="method">
+                  <div>
+                    <h4>A donor-advised fund</h4>
+                    <p>Give through TrustBridge, a donor-advised fund that is truly global.</p>
+                  </div>
+                  <div class="method__act">
+                    <a
+                      class="link"
+                      href="https://portal.trustbridgeglobal.com/public/donate?id=0cec26b764187f96703220583dd6f50caced00ff"
+                      >Give through TrustBridge</a
+                    >
+                  </div>
+                </div>
+                <div class="method">
+                  <div>
+                    <h4>Trusts and your estate</h4>
+                    <p>
+                      Charles McLucas Jnr, CPA, PFS, CKA, explains how a charitable remainder trust can help you avoid
+                      unnecessary tax as wealth passes to the next generation. And please prayerfully consider including
+                      YWAM Ships Kona in your estate planning.
+                    </p>
+                  </div>
+                  <div class="method__act">
+                    <a
+                      class="link"
+                      href="https://www.ywamshipskona.org/wp-content/uploads/2026/01/2026-CRTs-for-baby-boomers.pdf"
+                      >Read the guide (PDF)</a
+                    >
+                  </div>
+                </div>
+                <p class="ledger__aside">We aren't tax advisors, so please check with yours about your situation.</p>
+              </div>
+            </div>
+
+            <div class="ledger__group">
+              <h3>Online and from abroad</h3>
+              <div class="ledger__items">
+                <div class="method">
+                  <div>
+                    <h4>International wire</h4>
+                    <p>Give, or pay school fees, by wire transfer through Flywire.</p>
+                  </div>
+                  <div class="method__act">
+                    <a class="link" href="https://www.flywire.com/widget/transfers/new?school_subdomain=ywamships"
+                      >Send a wire with Flywire</a
+                    >
+                  </div>
+                </div>
+                <div class="method">
+                  <div>
+                    <h4>Cash App</h4>
+                    <p>Send your gift to <strong>$YWAMShipsKona</strong>.</p>
+                  </div>
+                  <div class="method__act">
+                    <a class="link" href="https://cash.app/$YWAMShipsKona">Open Cash App</a>
+                  </div>
+                </div>
+                <div class="method">
+                  <div>
+                    <h4>PayPal</h4>
+                    <p>Find us on PayPal under our legal name, YWAM Ships Orange County.</p>
+                  </div>
+                  <div class="method__act">
+                    <a class="link" href="https://www.paypal.com/paypalme/brettcurtis1">Give with PayPal</a>
+                  </div>
+                </div>
+                <div class="method">
+                  <div>
+                    <h4>Combined Federal Campaign</h4>
+                    <p>Federal employees can give through the CFC with our charity number, 49726.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p class="other__fees">
+            Paying tuition, an outreach fee or a staff fee? That's a payment rather than a gift, so please use our
+            <a class="link" href="https://www.ywamshipskona.org/payment_fee/">fee and tuition payment page</a>.
+          </p>
+          <p class="visually-hidden" aria-live="polite" data-copy-status></p>
+        </div>
+      </section>
+
+      <!-- ═══ Our commitment to donors ═══ -->
+      <section class="trust section on-foam on-light" id="trust" aria-labelledby="trust-title">
+        <div class="wrap">
+          <div class="section-head">
+            <h2 id="trust-title">Accountable for every gift</h2>
+            <p>
+              You'll see the name YWAM Ships Orange County below and on PayPal. It's our legal name: we began in Orange
+              County, California, in 2011 and became YWAM Ships Kona in 2013, the year Port YWAM opened in Kona. Same
+              organization, same EIN.
+            </p>
+          </div>
+
+          <div class="trust__grid">
+            <article class="commitment" aria-labelledby="commitment-title">
+              <h3 id="commitment-title">Our commitment to you, the donor</h3>
+              <p>
+                YWAM Ships Orange County is committed to using your gifts wisely and efficiently to fulfill our mission.
+                We deeply value your trust and confidence. No goods or services were provided in exchange for this
+                contribution. All donations are tax-deductible and will be used to support YWAM Ships Orange County
+                programs and projects, including—but not limited to—property development, staff support, and outreach
+                efforts.
+              </p>
+              <p>
+                While we strive to honor donor preferences whenever possible, all gifts are received as unrestricted
+                contributions, allowing us to allocate funds where they are most needed. If a specific initiative is
+                fully funded, or if program needs change, the Board of Directors reserves the right to reallocate funds
+                to the area of greatest impact while ensuring they remain within the scope of our charitable purpose.
+              </p>
+              <p>
+                Donations designated for a specific purpose will be used accordingly, unless the donor provides
+                permission to redirect them. We provide financial accountability through accurate acknowledgments,
+                annual reports, and independent audits. To request a copy of our audited financial statements, please
+                contact us directly. Our EIN number is 45-3452689.
+              </p>
+            </article>
+
+            <div class="credentials">
+              <h3 class="visually-hidden">Registration and accreditation</h3>
+              <dl>
+                <div>
+                  <dt>Tax status</dt>
+                  <dd>501(c)(3) nonprofit</dd>
+                </div>
+                <div>
+                  <dt>EIN</dt>
+                  <dd>
+                    45-3452689
+                    <button
+                      class="copy-chip"
+                      type="button"
+                      data-copy="45-3452689"
+                      data-copied="EIN copied"
+                      hidden
+                    >
+                      Copy<span class="visually-hidden"> EIN</span>
+                    </button>
+                  </dd>
+                </div>
+                <div>
+                  <dt>Accreditation</dt>
+                  <dd>ECFA accredited member</dd>
+                </div>
+                <div>
+                  <dt>Transparency</dt>
+                  <dd>Candid Silver Seal, 2024</dd>
+                </div>
+                <div>
+                  <dt>Combined Federal Campaign</dt>
+                  <dd>CFC #49726</dd>
+                </div>
+              </dl>
+
+              <div class="seal-row">
+                <a href="https://www.ecfa.org/MemberProfile.aspx?ID=43049">
+                  <img
+                    src="/assets/img/brand/seal-ECFA.png"
+                    alt="ECFA accredited seal. View our ECFA member profile"
+                    width="261"
+                    height="239"
+                    loading="lazy"
+                  />
+                </a>
+                <img
+                  src="/assets/img/brand/seal-candid-seal-silver-2024.png"
+                  alt="Candid Silver Transparency 2024 seal"
+                  width="522"
+                  height="522"
+                  loading="lazy"
+                />
+              </div>
+
+              <ul class="trust__links">
+                <li>
+                  <a class="link" href="mailto:info@ywamships.net?subject=Request%20for%20audited%20financial%20statements"
+                    >Request our audited financial statements</a
+                  >
+                </li>
+                <li>
+                  <a class="link" href="https://www.ywamshipskona.org/wp-content/uploads/2025/05/2019-2021-AnnualReport.pdf"
+                    >Annual report, 2019 to 2021 (PDF)</a
+                  >
+                </li>
+                <li>
+                  <a class="link" href="https://projects.propublica.org/nonprofits/organizations/453452689"
+                    >Our Form 990 filings on ProPublica</a
+                  >
+                </li>
+              </ul>
+
+              <p class="trust__structure">
+                Every YWAM organization is legally and financially separate, with its own board, its own accounts and its
+                own independent audits. Gifts made here are budgeted and spent by YWAM Ships Kona.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ Closing call ═══ -->
+      <section class="cta-band" aria-labelledby="cta-title">
+        <div class="give-cta__bg" aria-hidden="true">
+          <img src="/assets/img/village-dusk-cookfires.jpg" alt="" width="2200" height="1467" loading="lazy" />
+        </div>
+        <canvas data-embers aria-hidden="true"></canvas>
+        <div class="wrap">
+          <h2 id="cta-title">Together, we can be the difference.</h2>
+          <p>Give once or every month. Your gift goes to the mission, not to salaries.</p>
+          <div class="cta-band__actions">
+            <a class="btn" href="https://ywamships.givingpage.org/donate">Give now</a>
+            <a class="btn btn--ghost" href="https://ywamships.givingpage.org/wavemakers">Become a WaveMaker</a>
+          </div>
+          <p class="cta-band__contact">
+            Questions about giving? Email <a href="mailto:info@ywamships.net">info@ywamships.net</a> or call
+            <a href="tel:+18087579150">+1 (808) 757-9150</a>.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- @include partials/footer.html -->
+    <script type="module" src="/src/pages/give.js"></script>
+  </body>
+</html>

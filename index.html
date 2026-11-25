@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>YWAM Ships Kona: some islands only a ship can reach</title>
+    <meta
+      name="description"
+      content="From Kona, Hawaiʻi, YWAM Ships Kona trains young people in Discipleship Training Schools and sails the m/v YWAM Liberty to isolated Pacific islands with free medical care and the hope of Jesus."
+    />
+    <meta name="theme-color" content="#071222" />
+    <link rel="icon" href="/assets/img/brand/favicon-blue-512.png" />
+    <link rel="apple-touch-icon" href="/assets/img/brand/favicon-blue-512.png" />
+    <meta property="og:title" content="YWAM Ships Kona" />
+    <meta property="og:description" content="Some islands only a ship can reach. Train, volunteer or give." />
+    <meta property="og:image" content="/assets/img/ship-liberty-aerial-turquoise.jpg" />
+    <link rel="preload" href="/assets/geo/pacific.json" as="fetch" crossorigin />
+  </head>
+  <body data-solid-after="5.6">
+    <!-- @include partials/header.html page="home" -->
+
+    <main id="main">
+      <!-- ═══ The voyage: a dusk sea off Kona that burns into a chart of the Pacific ═══ -->
+      <section class="voyage" id="voyage" aria-label="The voyage from Kona to Papua New Guinea">
+        <div class="voyage__stage">
+          <img
+            class="voyage__fallback"
+            src="/assets/img/ship-liberty-aerial-turquoise.jpg"
+            alt="The white m/v YWAM Liberty at anchor in turquoise water beside a jungle island"
+          />
+          <canvas class="voyage__canvas" aria-hidden="true"></canvas>
+          <div class="voyage__shade"></div>
+          <div class="chart-labels" aria-hidden="true"></div>
+
+          <div class="voyage__layer hero" data-layer="hero">
+            <div class="wrap hero__inner">
+              <div>
+                <h1>
+                  <span class="line"><span>Some islands</span></span>
+                  <span class="line"><span>only a ship</span></span>
+                  <span class="line"><span>can reach.</span></span>
+                </h1>
+                <p class="hero__lede">
+                  From Kona, Hawaiʻi, we train young people to follow Jesus, then sail the m/v YWAM Liberty to
+                  isolated Pacific islands with free medical care and the hope of the Gospel.
+                </p>
+                <div class="hero__actions">
+                  <a class="btn" href="/train.html#schools">Find a school</a>
+                  <a class="btn btn--ghost" href="/give.html">Donate</a>
+                </div>
+              </div>
+              <p class="hero__port">
+                <span class="place">Kailua-Kona, Hawaiʻi</span>
+                Port YWAM, across from the pier where the first missionaries to Hawaiʻi landed in 1820.
+              </p>
+            </div>
+            <span class="scroll-cue" aria-hidden="true"></span>
+          </div>
+
+          <div class="voyage__layer manifesto" data-layer="manifesto">
+            <div class="wrap">
+              <p data-words>936 Pacific islands have no airport.</p>
+              <p data-words>No road in. No bridge. No runway.</p>
+              <p data-words>So we bring the clinic by ship.</p>
+            </div>
+          </div>
+
+          <div class="voyage__layer ports" data-layer="ports">
+            <ol class="voyage-progress" aria-label="Voyage progress">
+              <li data-stop="0"><button type="button" aria-label="Go to Kona"><span>Kona</span></button></li>
+              <li data-stop="1"><button type="button" aria-label="Go to the Marshall Islands"><span>Marshall Islands</span></button></li>
+              <li data-stop="2"><button type="button" aria-label="Go to Madang"><span>Madang</span></button></li>
+            </ol>
+            <div class="wrap">
+              <div class="port-card">
+                <article class="port" data-port="0">
+                  <div class="port__leg"><span>Home port</span><span>19.64° N, 155.99° W</span></div>
+                  <h2>Kona, Hawaiʻi <small>Port YWAM, our training base</small></h2>
+                  <p>
+                    Every voyage starts in a classroom on Aliʻi Drive. Discipleship Training Schools begin here four
+                    times a year: twelve weeks of lecture, then outreach across the Pacific and beyond.
+                  </p>
+                  <a class="link" href="/train.html#schools">See upcoming schools</a>
+                </article>
+                <article class="port" data-port="1">
+                  <div class="port__leg"><span>2,044 nautical miles from Kona</span><span>About 14 days under sail</span></div>
+                  <h2>Marshall Islands <small>Majuro and the outer atolls</small></h2>
+                  <p>
+                    In 2014 President Christopher Loeak came aboard in Majuro and invited us for ten years. From
+                    Ebeye, our partner ketch Cloud Nine sails three-week trips to the remote western atolls.
+                  </p>
+                  <a class="link" href="/about.html#where">Where we serve</a>
+                </article>
+                <article class="port" data-port="2">
+                  <div class="port__leg"><span>3,746 nautical miles from Kona</span><span>Home of the Liberty</span></div>
+                  <h2>Madang, Papua New Guinea <small>The Liberty's home port since 2025</small></h2>
+                  <p>
+                    Eye surgery on board, dental and primary care ashore, and translators recording Scripture in their
+                    own languages. In 2025 her teams provided more than 20,000 medical services.
+                  </p>
+                  <a class="link" href="/volunteer.html">Volunteer on the Liberty</a>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ Three ways aboard ═══ -->
+      <section class="ways section on-light" aria-labelledby="ways-title">
+        <div class="wrap">
+          <div class="ways__head">
+            <h2 id="ways-title">There's a place for you on board.</h2>
+            <p class="lede">
+              Some people come to be trained. Some bring a skill the islands need. Some stay home and send others.
+              Every one of them is crew.
+            </p>
+          </div>
+          <ul class="ways__list">
+            <li class="way" data-peek="0">
+              <a href="/train.html">
+                <span class="way__name">Train</span>
+                <span class="way__body">
+                  <span class="way__copy">
+                    Start with a Discipleship Training School in Kona: twelve weeks to know God and make Him known,
+                    then two to three months on outreach.
+                  </span>
+                  <span class="way__cta">Explore schools</span>
+                </span>
+                <span class="way__meta">Next school starts <strong data-next-school>Jan 13, 2027</strong></span>
+              </a>
+            </li>
+            <li class="way" data-peek="1">
+              <a href="/volunteer.html">
+                <span class="way__name">Volunteer</span>
+                <span class="way__body">
+                  <span class="way__copy">
+                    Doctors, dentists, deckhands, engineers, baristas, photographers. If you have a skill, the Liberty
+                    has a place for it.
+                  </span>
+                  <span class="way__cta">Find your role</span>
+                </span>
+                <span class="way__meta">Across <strong>11 departments</strong></span>
+              </a>
+            </li>
+            <li class="way" data-peek="2">
+              <a href="/give.html">
+                <span class="way__name">Give</span>
+                <span class="way__body">
+                  <span class="way__copy">
+                    No one here takes a salary, from our founder to our janitor. Your gift goes to care for people on
+                    the islands.
+                  </span>
+                  <span class="way__cta">Ways to give</span>
+                </span>
+                <span class="way__meta">$99 a month cares for <strong>three patients</strong></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="ways__peek" aria-hidden="true">
+          <img src="/assets/img/sm/dts-worship-night.jpg" alt="" loading="lazy" />
+          <img src="/assets/img/sm/volunteer-bridge-helm.jpg" alt="" loading="lazy" />
+          <img src="/assets/img/sm/dental-kids-brushing-joy.jpg" alt="" loading="lazy" />
+        </div>
+      </section>
+
+      <!-- ═══ Departures board ═══ -->
+      <section class="departures section" id="schools" aria-labelledby="departures-title">
+        <div class="wrap">
+          <div class="departures__head">
+            <div>
+              <h2 id="departures-title">Next departures from Kona</h2>
+              <p style="margin-top: 18px">
+                Every school starts at Port YWAM. Discipleship Training Schools come first; University of the Nations
+                courses take you further.
+              </p>
+            </div>
+            <div class="filters" role="group" aria-label="Filter schools">
+              <button class="filter" type="button" aria-pressed="true" data-filter="all">All schools</button>
+              <button class="filter" type="button" aria-pressed="false" data-filter="dts">DTS</button>
+              <button class="filter" type="button" aria-pressed="false" data-filter="uofn">UofN courses</button>
+            </div>
+          </div>
+
+          <table class="board">
+            <caption class="visually-hidden">Upcoming schools at YWAM Ships Kona</caption>
+            <thead>
+              <tr>
+                <th scope="col">Starts</th>
+                <th scope="col">School</th>
+                <th scope="col">Type</th>
+                <th scope="col" style="text-align: right">Applications</th>
+              </tr>
+            </thead>
+            <tbody data-board></tbody>
+          </table>
+
+          <div class="board__foot">
+            <p>Minimum age 18. Most DTS cost $10,100 to $11,100, outreach included.</p>
+            <a class="btn" href="/train.html">All schools and costs</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ The Liberty, deck by deck ═══ -->
+      <section class="liberty section" id="liberty" aria-labelledby="liberty-title">
+        <div class="wrap">
+          <div class="liberty__head">
+            <div>
+              <h2 id="liberty-title">Meet the Liberty.</h2>
+              <ul class="specs">
+                <li><strong>65.5 m</strong> long</li>
+                <li><strong>1986</strong> built in Scotland</li>
+                <li><strong>14 kn</strong> top speed</li>
+                <li><strong>1A Super</strong> ice class</li>
+              </ul>
+            </div>
+            <p>
+              For 29 years she was L'Astrolabe, resupplying a French research station in Antarctica. In 2017 her
+              owners sold her to YWAM for $300,000, a fraction of her value. Today the old polar ship carries
+              clinics in shipping containers to the tropics. Tap a part of the ship to see who works there.
+            </p>
+          </div>
+
+          <div class="profile">
+            <div class="profile__drawing">
+              <img
+                src="/assets/img/brand/ship-lineart-liberty-white.png"
+                alt="Line drawing of the m/v YWAM Liberty in side profile"
+                width="2004"
+                height="830"
+                loading="lazy"
+              />
+              <span class="profile__water" style="top: 79%"></span>
+              <button class="hotspot" style="left: 75%; top: 46%" aria-pressed="true" data-deck="bridge" data-label="Bridge"><span class="visually-hidden">Bridge</span></button>
+              <button class="hotspot" style="left: 47%; top: 88%" aria-pressed="false" data-deck="engine" data-label="Engine room"><span class="visually-hidden">Engine room</span></button>
+              <button class="hotspot" style="left: 15%; top: 60%" aria-pressed="false" data-deck="clinics" data-label="Clinic deck"><span class="visually-hidden">Clinic deck</span></button>
+              <button class="hotspot" style="left: 79%; top: 72%" aria-pressed="false" data-deck="galley" data-label="Galley and café"><span class="visually-hidden">Galley and café</span></button>
+              <button class="hotspot" style="left: 55%; top: 62%" aria-pressed="false" data-deck="office" data-label="Ship&#39;s office"><span class="visually-hidden">Ship's office</span></button>
+            </div>
+          </div>
+
+          <div class="decks">
+            <ul class="deck-list" role="tablist" aria-label="Parts of the ship">
+              <li><button role="tab" id="tab-bridge" aria-controls="deck-bridge" aria-selected="true" data-deck="bridge">Bridge <span>Marine officers</span></button></li>
+              <li><button role="tab" id="tab-clinics" aria-controls="deck-clinics" aria-selected="false" tabindex="-1" data-deck="clinics">Clinic deck <span>4 departments</span></button></li>
+              <li><button role="tab" id="tab-engine" aria-controls="deck-engine" aria-selected="false" tabindex="-1" data-deck="engine">Engine room <span>Engineering, trades</span></button></li>
+              <li><button role="tab" id="tab-galley" aria-controls="deck-galley" aria-selected="false" tabindex="-1" data-deck="galley">Galley and café <span>Hospitality</span></button></li>
+              <li><button role="tab" id="tab-office" aria-controls="deck-office" aria-selected="false" tabindex="-1" data-deck="office">Ship's office <span>Media, admin, IT</span></button></li>
+            </ul>
+            <div>
+              <div class="deck-panel" role="tabpanel" id="deck-bridge" aria-labelledby="tab-bridge">
+                <h3>The bridge</h3>
+                <p>
+                  Watchkeeping, navigation, and anchoring close enough to shore for the Zodiacs to run. About a third of
+                  the crew are Papua New Guineans, many of them trained at PNG Maritime College in Madang.
+                </p>
+                <ul class="roles">
+                  <li>Master II/2</li>
+                  <li>Chief mate II/2</li>
+                  <li>Able seafarer deck II/5</li>
+                  <li>Deckhand</li>
+                </ul>
+                <a class="btn btn--ghost" href="/volunteer.html#marine">Marine roles</a>
+              </div>
+              <div class="deck-panel" role="tabpanel" id="deck-clinics" aria-labelledby="tab-clinics" hidden>
+                <h3>The clinic deck</h3>
+                <p>
+                  The Liberty is the only ship in the YWAM fleet that carries shipping containers. On deck they become
+                  an eye-surgery theatre, a dental clinic, a TB lab and a pharmacy. Primary care and optometry clinics
+                  run ashore, and Zodiacs bring surgery patients out to the ship.
+                </p>
+                <ul class="roles">
+                  <li>Doctor</li>
+                  <li>Nurse</li>
+                  <li>Midwife</li>
+                  <li>Pharmacist</li>
+                  <li>Dentist</li>
+                  <li>Dental assistant</li>
+                  <li>Optometrist</li>
+                  <li>Ophthalmologist</li>
+                  <li>Sterilization technician</li>
+                </ul>
+                <a class="btn btn--ghost" href="/volunteer.html#medical">Medical roles</a>
+              </div>
+              <div class="deck-panel" role="tabpanel" id="deck-engine" aria-labelledby="tab-engine" hidden>
+                <h3>The engine room</h3>
+                <p>
+                  Two Mirrlees Blackstone diesels, 4,600 kW between them, rebuilt to the crankshaft during the pandemic
+                  and back at sea since 2024. Engineers keep her running; tradespeople keep everything else working.
+                </p>
+                <ul class="roles">
+                  <li>Chief engineering officer</li>
+                  <li>Second engineering officer</li>
+                  <li>Motorman</li>
+                  <li>Electrician</li>
+                  <li>Plumber</li>
+                  <li>Mechanic</li>
+                  <li>Construction</li>
+                </ul>
+                <a class="btn btn--ghost" href="/volunteer.html#marine">Engineering roles</a>
+              </div>
+              <div class="deck-panel" role="tabpanel" id="deck-galley" aria-labelledby="tab-galley" hidden>
+                <h3>The galley and the Liberty Café</h3>
+                <p>
+                  A ship runs on its kitchen. Cooks feed crew, medical teams and visiting translators, and the café is
+                  where a translator from the Rai Coast tried his first latte.
+                </p>
+                <ul class="roles">
+                  <li>Cook</li>
+                  <li>Kitchen hand</li>
+                  <li>Barista</li>
+                  <li>Steward</li>
+                  <li>Waiter</li>
+                  <li>Room cleaning</li>
+                </ul>
+                <a class="btn btn--ghost" href="/volunteer.html#hospitality">Hospitality roles</a>
+              </div>
+              <div class="deck-panel" role="tabpanel" id="deck-office" aria-labelledby="tab-office" hidden>
+                <h3>The ship's office</h3>
+                <p>
+                  Stories, logistics, networks and people. The office keeps the ship connected and tells the world what
+                  happens when she arrives.
+                </p>
+                <ul class="roles">
+                  <li>Photographer</li>
+                  <li>Videographer</li>
+                  <li>Graphic designer</li>
+                  <li>Web developer</li>
+                  <li>Human resources</li>
+                  <li>Data analyst</li>
+                  <li>Network manager</li>
+                  <li>AV and security systems</li>
+                </ul>
+                <a class="btn btn--ghost" href="/volunteer.html#support">Support roles</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ Ship's log ═══ -->
+      <section class="log section on-light" aria-labelledby="log-title">
+        <div class="wrap log__grid">
+          <div class="log__intro">
+            <h2 id="log-title">From the ship's log</h2>
+            <p>
+              Behind every number is someone who waited for the ship. On the Rai Coast in 2025, some walked three days
+              to reach the clinic. The year each figure comes from is shown beside it.
+            </p>
+            <figure class="log__figure">
+              <img
+                src="/assets/img/sm/eye-patient-smile-patch.jpg"
+                alt="A man grinning after cataract surgery, a green shield over one eye"
+                loading="lazy"
+              />
+            </figure>
+          </div>
+          <div>
+            <ul class="tally">
+              <li>
+                <span class="tally__n" data-count="20000" data-suffix="+">20,000+</span>
+                <span class="tally__what">medical services in Madang Province</span>
+                <span class="tally__note">2025, the Liberty's first year home in Madang</span>
+              </li>
+              <li>
+                <span class="tally__n" data-count="654">654</span>
+                <span class="tally__what">people who can see again</span>
+                <span class="tally__note">Eye surgeries, 2016 to 2018</span>
+              </li>
+              <li>
+                <span class="tally__n" data-count="296">296</span>
+                <span class="tally__what">villages visited</span>
+                <span class="tally__note">2016 to 2018</span>
+              </li>
+              <li>
+                <span class="tally__n" data-count="10995">10,995</span>
+                <span class="tally__what">Bibles given out</span>
+                <span class="tally__note">2016 to 2018</span>
+              </li>
+            </ul>
+            <p class="log__source">
+              Sources: YWAM Ships Kona annual reports 2016–2018; EMTV news, April 2026, quoting Liberty director Kristy
+              Wilke.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ Stories ═══ -->
+      <section class="stories section on-light" aria-labelledby="stories-title">
+        <div class="wrap">
+          <div class="stories__head">
+            <h2 id="stories-title">Stories from the field</h2>
+            <a class="btn btn--ocean" href="/stories.html">All stories</a>
+          </div>
+          <div class="stories__grid" data-stories>
+            <!-- filled from src/data/stories.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ Voices ═══ -->
+      <section class="voices section" aria-labelledby="voices-title">
+        <div class="wrap">
+          <h2 id="voices-title" class="visually-hidden">What our partners say</h2>
+          <div class="voices__track">
+            <div>
+              <figure id="voice-0">
+                <blockquote>
+                  <p>
+                    For 60 years or more I've traveled the nations of the earth, and I have seen where the hardest places
+                    are. It's the islands of the Pacific.
+                  </p>
+                </blockquote>
+                <figcaption>Loren Cunningham <span>Founder, Youth With A Mission</span></figcaption>
+              </figure>
+              <figure id="voice-1" hidden>
+                <blockquote>
+                  <p>
+                    Our partnership with YWAM Ships Kona has helped to provide essential services to more places, while
+                    building capacity for people to continue meeting their development needs.
+                  </p>
+                </blockquote>
+                <figcaption>Sasindran Muthuvel <span>Governor, West New Britain, Papua New Guinea</span></figcaption>
+              </figure>
+              <figure id="voice-2" hidden>
+                <blockquote>
+                  <p>
+                    …thank YWAM Ships Kona for your partnership with us in delivering the much-needed services to our
+                    remote disadvantaged communities…
+                  </p>
+                </blockquote>
+                <figcaption>Dr. Waimbe Wahamu <span>Ophthalmologist, Western Highlands, Papua New Guinea</span></figcaption>
+              </figure>
+              <figure id="voice-3" hidden>
+                <blockquote>
+                  <p>
+                    We look forward to future visits from YWAM teams, building on the outcomes from their recent visit and
+                    exploring new areas for collaboration.
+                  </p>
+                </blockquote>
+                <figcaption>Christopher J. Loeak <span>Former President, Marshall Islands</span></figcaption>
+              </figure>
+            </div>
+            <ul class="voices__nav" role="tablist" aria-label="Choose a voice">
+              <li><button role="tab" aria-selected="true" aria-controls="voice-0">Loren Cunningham <span>Kona</span></button></li>
+              <li><button role="tab" aria-selected="false" aria-controls="voice-1" tabindex="-1">Gov. Muthuvel <span>West New Britain</span></button></li>
+              <li><button role="tab" aria-selected="false" aria-controls="voice-2" tabindex="-1">Dr. Wahamu <span>Highlands</span></button></li>
+              <li><button role="tab" aria-selected="false" aria-controls="voice-3" tabindex="-1">Christopher J. Loeak <span>Majuro</span></button></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ Final call ═══ -->
+      <section class="final" aria-labelledby="final-title">
+        <div class="final__bg">
+          <img src="/assets/img/village-kids-cheering-crowd.jpg" alt="" loading="lazy" />
+        </div>
+        <canvas data-embers aria-hidden="true"></canvas>
+        <div class="wrap">
+          <h2 id="final-title">Be the difference.</h2>
+          <p>
+            Train in Kona, serve on the Liberty, or send someone who will. However you come aboard, the islands get a
+            little closer.
+          </p>
+          <div class="final__actions">
+            <a class="btn" href="/train.html#schools">Find a school</a>
+            <a class="btn btn--ghost" href="/volunteer.html">Volunteer</a>
+            <a class="btn btn--ghost" href="/give.html">Donate</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- @include partials/footer.html -->
+    <script type="module" src="/src/home.js"></script>
+  </body>
+</html>

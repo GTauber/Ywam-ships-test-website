@@ -1,0 +1,691 @@
+/* Give page. Shared components (page hero, rows, facts, notice, pull quote, cta band) come from components.css. */
+
+/* ─── Hero ───────────────────────────────────────────────────────────────── */
+/* The patient's face sits right of centre; keep it in frame as the crop tightens. */
+.give-hero .page-hero__media img {
+  object-position: 76% 40%;
+}
+.give-hero__trust {
+  margin-top: clamp(24px, 3vw, 36px);
+  font-size: var(--step--1);
+  color: rgb(255 255 255 / 0.78);
+  max-width: 64ch;
+}
+.give-hero__trust .link {
+  color: var(--salt);
+  margin-left: 0.3em;
+}
+@media (max-width: 760px) {
+  .give-hero .page-hero__media img {
+    object-position: 70% 30%;
+  }
+}
+
+/* ─── The chooser ────────────────────────────────────────────────────────── */
+.chooser {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: 40px clamp(32px, 6vw, 112px);
+  align-items: start;
+}
+.chooser__intro h2 {
+  max-width: 11ch;
+}
+.chooser__intro p {
+  margin-top: 22px;
+  max-width: 40ch;
+  color: rgb(255 255 255 / 0.86);
+}
+.chooser__intro .chooser__aside {
+  font-size: var(--step--1);
+  color: var(--haze);
+}
+.on-ocean a:not(.btn) {
+  color: var(--lagoon);
+}
+.chooser fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.chooser legend {
+  padding: 0;
+  margin-bottom: 12px;
+  font-size: var(--step--1);
+  color: var(--haze);
+}
+/* Radios stay in the accessibility tree and keyboard order; only the dot is hidden. */
+.freq__track,
+.amount {
+  position: relative;
+}
+.chooser input[type='radio'] {
+  top: 0;
+  left: 0;
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+}
+
+/* How often: a two-position pill switch. */
+.freq__track {
+  display: inline-flex;
+  flex-wrap: wrap;
+  padding: 4px;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.28);
+}
+.freq label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-weight: 650;
+  font-stretch: 106%;
+  cursor: pointer;
+  transition: background-color 0.3s var(--ease-out), color 0.3s var(--ease-out);
+}
+.freq label:hover {
+  background: rgb(255 255 255 / 0.08);
+}
+.freq input:checked + label {
+  background: var(--salt);
+  color: var(--ocean);
+}
+.freq input:focus-visible + label,
+.amount input:focus-visible + label {
+  outline: 2px solid var(--lagoon);
+  outline-offset: 3px;
+}
+
+/* Monthly amounts: three numbers painted big, like a hull number. */
+.chooser .amounts {
+  margin-top: clamp(28px, 3.4vw, 44px);
+}
+.amounts__list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-bottom: 1px solid rgb(255 255 255 / 0.18);
+}
+.amount label {
+  position: relative;
+  display: block;
+  padding: 6px 12px 18px 0;
+  color: var(--haze);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: color 0.3s var(--ease-out);
+}
+.amount label:hover {
+  color: rgb(255 255 255 / 0.92);
+}
+.amount__n {
+  display: block;
+  font-size: clamp(2.5rem, 1.3rem + 4.2vw, 5.4rem);
+  font-weight: 820;
+  font-stretch: 118%;
+  line-height: 0.9;
+  letter-spacing: -0.035em;
+  font-variant-numeric: tabular-nums;
+}
+.amount__what {
+  display: block;
+  margin-top: 10px;
+  font-size: var(--step--1);
+  font-weight: 600;
+}
+/* The chosen amount is the start of an action, so it carries the ember. */
+.amount label::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 14px;
+  bottom: -1px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--ember);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s var(--ease-out);
+}
+.amount input:checked + label {
+  color: var(--salt);
+}
+.amount input:checked + label::after {
+  transform: scaleX(1);
+}
+
+/* What the gift does: one readout per choice. CSS picks the visible one, so it works without JavaScript. */
+.readout {
+  margin-top: clamp(28px, 3.4vw, 40px);
+}
+.readout__item {
+  display: none;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: 20px clamp(20px, 2.6vw, 36px);
+  align-items: center;
+}
+.readout__item img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 6px;
+  background: var(--ocean-2);
+}
+.readout__item[data-show='m33'] {
+  display: grid;
+}
+.chooser:has(input:checked) .readout__item[data-show='m33'] {
+  display: none;
+}
+.chooser:has(#freq-monthly:checked):has(#amt-33:checked) .readout__item[data-show='m33'],
+.chooser:has(#freq-monthly:checked):has(#amt-66:checked) .readout__item[data-show='m66'],
+.chooser:has(#freq-monthly:checked):has(#amt-99:checked) .readout__item[data-show='m99'],
+.chooser:has(#freq-once:checked) .readout__item[data-show='once'] {
+  display: grid;
+}
+.readout__count {
+  font-size: var(--step-3);
+  font-weight: 800;
+  font-stretch: 114%;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.readout__item p:not(.readout__count) {
+  color: rgb(255 255 255 / 0.86);
+  max-width: 38ch;
+}
+/* Only after the visitor changes something: the new readout settles in. */
+.chooser.is-live .readout__item {
+  animation: readout-in 0.55s var(--ease-out) both;
+}
+.chooser.is-live .readout__item img {
+  animation: readout-img 0.9s var(--ease-out) both;
+}
+@keyframes readout-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+@keyframes readout-img {
+  from {
+    opacity: 0.2;
+    transform: scale(1.04);
+  }
+}
+
+.chooser__note {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgb(255 255 255 / 0.14);
+  font-size: var(--step--1);
+  color: var(--haze);
+  max-width: 60ch;
+}
+.chooser__go {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+}
+.chooser__go p {
+  font-size: var(--step--1);
+  color: var(--haze);
+}
+.chooser__go--once {
+  display: none;
+}
+.chooser:has(#freq-once:checked) .chooser__go--once {
+  display: flex;
+}
+.chooser:has(#freq-once:checked) .chooser__go--monthly,
+.chooser:has(#freq-once:checked) .amounts,
+.chooser:has(#freq-once:checked) .chooser__note {
+  display: none;
+}
+
+@media (max-width: 980px) {
+  .chooser {
+    grid-template-columns: 1fr;
+  }
+  .chooser__intro h2 {
+    max-width: 16ch;
+  }
+}
+@media (max-width: 600px) {
+  .readout__item {
+    grid-template-columns: 1fr;
+  }
+  .chooser__go .btn {
+    white-space: normal;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    line-height: 1.2;
+  }
+}
+
+/* ─── Why it goes further ───────────────────────────────────────────────── */
+.why h2 {
+  color: var(--ocean);
+  max-width: 13ch;
+}
+.why .prose {
+  margin-top: 22px;
+}
+.why__media img {
+  aspect-ratio: 3 / 2;
+  object-position: 50% 55%;
+}
+.why__facts {
+  margin-top: clamp(48px, 6vw, 88px);
+  padding-top: 28px;
+  border-top: 1.5px solid var(--ocean);
+}
+.why__facts strong {
+  color: var(--ocean);
+  font-size: var(--step-3);
+  margin: 0 0 8px;
+}
+.why__facts .facts__label {
+  display: block;
+  max-width: 30ch;
+  font-size: var(--step-0);
+  color: var(--basalt);
+}
+
+.glasses {
+  margin-top: clamp(72px, 10vw, 144px);
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: 32px clamp(32px, 6vw, 96px);
+  align-items: center;
+}
+.glasses > img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: 40% 40%;
+  border-radius: 6px;
+}
+.glasses .pull-quote p {
+  color: var(--ocean);
+}
+.glasses figcaption .place {
+  font-weight: 400;
+  margin-top: 2px;
+}
+/* Standalone links get a 44px-tall tap area. The single links in rows and the ledger
+   pull it back with a negative margin so the layout doesn't move. */
+.glasses__more,
+.trust__links a,
+.monthly__paths a,
+.rows__meta .link,
+.method__act .link {
+  display: inline-block;
+  padding-block: 9px;
+}
+.rows__meta .link,
+.method__act .link {
+  margin-block: -9px;
+}
+.glasses__more {
+  margin-top: 9px;
+  color: var(--ocean);
+}
+@media (max-width: 860px) {
+  .glasses {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── Give to something specific ─────────────────────────────────────────── */
+.projects__rows {
+  border-top-color: var(--ocean);
+}
+.projects__rows h3 {
+  color: var(--ocean);
+}
+.projects__rows p:not(.rows__meta) {
+  max-width: 58ch;
+}
+.projects__rows .rows__meta {
+  font-size: var(--step-0);
+}
+.projects__rows .link,
+.projects__now .link,
+.other .link,
+.trust .link {
+  color: var(--ocean);
+}
+.projects .notice.projects__now {
+  margin-top: clamp(36px, 4vw, 56px);
+  max-width: 72ch;
+  background: var(--salt);
+}
+.projects__now .link {
+  margin-left: 0.2em;
+}
+
+/* ─── Monthly: WaveMakers ───────────────────────────────────────────────── */
+.monthly .split {
+  align-items: start;
+}
+.monthly__body h2 {
+  max-width: 12ch;
+}
+.monthly .lede {
+  margin-top: 22px;
+  color: rgb(255 255 255 / 0.88);
+}
+.tiers {
+  list-style: none;
+  padding: 0;
+  margin-top: clamp(28px, 3vw, 40px);
+  border-top: 1.5px solid rgb(255 255 255 / 0.7);
+}
+.tiers li {
+  display: grid;
+  grid-template-columns: calc(var(--step-2) * 2.7) minmax(0, 1fr);
+  gap: 16px;
+  align-items: baseline;
+  padding-block: 16px;
+  border-bottom: 1px solid rgb(255 255 255 / 0.14);
+}
+.tiers strong {
+  font-size: var(--step-2);
+  font-weight: 800;
+  font-stretch: 116%;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.tiers span {
+  color: rgb(255 255 255 / 0.86);
+}
+.monthly__more {
+  margin-top: 28px;
+  color: rgb(255 255 255 / 0.86);
+}
+.monthly__actions {
+  margin-top: 32px;
+}
+.monthly__paths-title {
+  margin-top: clamp(40px, 5vw, 56px);
+  font-size: var(--step-1);
+  color: var(--haze);
+}
+.monthly__paths {
+  list-style: none;
+  padding: 0;
+  margin-top: 3px;
+  display: grid;
+}
+.monthly .link {
+  color: var(--lagoon);
+}
+.monthly .split__media {
+  position: sticky;
+  top: calc(var(--header-h) + 24px);
+}
+@media (max-width: 860px) {
+  .monthly .split__media {
+    position: static;
+  }
+  .monthly .split__media img {
+    aspect-ratio: 4 / 5;
+    max-height: 70vh;
+  }
+}
+
+/* ─── Other ways: a ledger, grouped by where the money comes from ───────── */
+.other .section-head h2 {
+  color: var(--ocean);
+}
+.ledger {
+  border-top: 1.5px solid var(--ocean);
+}
+.ledger__group {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+  gap: 16px clamp(24px, 4vw, 64px);
+  padding-block: clamp(28px, 4vw, 52px);
+  border-bottom: 1px solid var(--mist);
+}
+.ledger__group > h3 {
+  color: var(--ocean);
+  font-size: var(--step-2);
+  align-self: start;
+  position: sticky;
+  top: calc(var(--header-h) + 20px);
+}
+.method {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, auto);
+  gap: 12px 40px;
+  align-items: start;
+  padding-bottom: 26px;
+}
+.method + .method {
+  padding-top: 26px;
+  border-top: 1px solid var(--mist);
+}
+.method:last-child {
+  padding-bottom: 0;
+}
+.method h4 {
+  font-size: var(--step-1);
+  font-weight: 700;
+  font-stretch: 106%;
+  line-height: 1.2;
+  color: var(--ocean);
+  margin-bottom: 6px;
+}
+.method p {
+  max-width: 60ch;
+}
+.method address {
+  font-style: normal;
+  margin-top: 12px;
+  padding-left: 16px;
+  box-shadow: inset 2px 0 0 var(--ocean);
+  font-weight: 600;
+  line-height: 1.55;
+  color: var(--ocean);
+}
+.method__note {
+  margin-top: 12px;
+  font-size: var(--step--1);
+  color: var(--tide);
+}
+.method__act {
+  justify-self: end;
+  text-align: right;
+  padding-top: 4px;
+}
+.method__act .btn {
+  color: var(--ocean);
+  min-height: 44px;
+}
+/* Copy buttons appear only where the clipboard is available (give.js unhides them). */
+.method__act .btn[hidden],
+.copy-chip[hidden] {
+  display: none;
+}
+.ledger__aside {
+  margin-top: 22px;
+  font-size: var(--step--1);
+  color: var(--tide);
+}
+.other__fees {
+  margin-top: 32px;
+  max-width: 70ch;
+}
+@media (max-width: 860px) {
+  .ledger__group {
+    grid-template-columns: 1fr;
+  }
+  .ledger__group > h3 {
+    position: static;
+  }
+  .method {
+    grid-template-columns: 1fr;
+  }
+  .method__act {
+    justify-self: start;
+    text-align: left;
+    padding-top: 0;
+  }
+}
+
+/* ─── Our commitment to you ─────────────────────────────────────────────── */
+.trust .section-head h2 {
+  max-width: 12ch;
+}
+.trust__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 40px clamp(32px, 6vw, 96px);
+  align-items: start;
+}
+/* The pledge reads like a signed letter: a white sheet with the brand's navy rule. */
+.commitment {
+  background: var(--salt);
+  border-radius: 6px;
+  padding: clamp(24px, 3.4vw, 48px);
+  box-shadow: inset 0 3px 0 var(--ocean);
+}
+.commitment h3 {
+  color: var(--ocean);
+  font-size: var(--step-2);
+  margin-bottom: 18px;
+}
+.commitment p {
+  max-width: 64ch;
+}
+.commitment p + p {
+  margin-top: 1em;
+}
+.credentials dl {
+  margin: 0;
+  border-top: 1.5px solid var(--ocean);
+}
+.credentials dl > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px 16px;
+  padding-block: 14px;
+  border-bottom: 1px solid var(--mist);
+}
+.credentials dt {
+  color: var(--tide);
+  font-size: var(--step--1);
+}
+.credentials dd {
+  margin: 0;
+  font-weight: 700;
+  font-stretch: 106%;
+  color: var(--ocean);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.copy-chip {
+  position: relative;
+  font-size: 0.8125rem;
+  font-weight: 650;
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 999px;
+  color: var(--ocean);
+  box-shadow: inset 0 0 0 1.5px currentColor;
+  transition: background-color 0.25s;
+}
+/* The chip stays small to sit beside the number; its tap area is 44px tall. */
+.copy-chip::after {
+  content: '';
+  position: absolute;
+  inset: -6px -4px;
+}
+.copy-chip:hover {
+  background: rgb(33 56 84 / 0.06);
+}
+.seal-row {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+.seal-row img {
+  height: 84px;
+  width: auto;
+}
+.seal-row a {
+  display: block;
+  border-radius: 50%;
+}
+.trust__links {
+  list-style: none;
+  padding: 0;
+  margin-top: 19px;
+  display: grid;
+}
+.trust__structure {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--mist);
+  font-size: var(--step--1);
+  color: var(--tide);
+  max-width: 48ch;
+}
+@media (max-width: 960px) {
+  .trust__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── Closing call ──────────────────────────────────────────────────────── */
+/* Cook fires at dusk in a village the ship serves, under the embers. */
+.give-cta__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+.give-cta__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 60% 60%;
+  opacity: 0.5;
+}
+.give-cta__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, var(--night) 0%, rgb(7 18 34 / 0.7) 45%, rgb(7 18 34 / 0.2) 100%),
+    linear-gradient(to top, var(--night) 0%, transparent 35%);
+}
+@media (max-width: 760px) {
+  .give-cta__bg::after {
+    background: linear-gradient(to top, var(--night) 10%, rgb(7 18 34 / 0.65) 60%, rgb(7 18 34 / 0.45) 100%);
+  }
+}
+.cta-band .cta-band__contact {
+  margin-top: 28px;
+  font-size: var(--step--1);
+  color: var(--haze);
+}
+.cta-band__contact a {
+  color: var(--salt);
+}

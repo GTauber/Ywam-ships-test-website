@@ -1,0 +1,1062 @@
+/* ─── Voyage: the sticky WebGL stage and what floats over it ─────────────── */
+.voyage {
+  position: relative;
+  background: var(--night);
+  color: var(--salt);
+  /* Scroll distance: hero, manifesto, the burn, three ports of call. */
+  height: 640vh;
+}
+.voyage__stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100lvh;
+  overflow: hidden;
+  /* The dusk sky as a gradient, shown until the first 3D frame is ready. */
+  background:
+    radial-gradient(60% 40% at 42% 52%, rgb(255 140 80 / 0.55), transparent 70%),
+    linear-gradient(to bottom, #050d19 0%, #1b2650 34%, #8a4a4a 49%, #d0603f 52.5%, #0a1a2c 53%, #071222 100%);
+}
+.voyage__canvas {
+  opacity: 0;
+  transition: opacity 1.4s var(--ease-out);
+}
+.voyage.is-ready .voyage__canvas {
+  opacity: 1;
+}
+.voyage__canvas,
+.voyage__fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.voyage__fallback {
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+.no-webgl .voyage__fallback {
+  opacity: 1;
+}
+.voyage__shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgb(7 18 34 / 0.78) 0%, rgb(7 18 34 / 0.25) 34%, transparent 55%),
+    linear-gradient(to bottom, rgb(7 18 34 / 0.5) 0%, transparent 18%);
+}
+
+/* Each overlay layer fills the stage; scroll progress fades them in and out. */
+.voyage__layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  pointer-events: none;
+  isolation: isolate;
+}
+.voyage__layer > * {
+  pointer-events: auto;
+}
+.voyage__layer[style*='pointer-events: none'] > * {
+  pointer-events: none;
+}
+.voyage__layer:focus-within {
+  opacity: 1 !important;
+}
+
+.hero {
+  align-items: flex-end;
+  padding-bottom: clamp(40px, 8vh, 96px);
+}
+.hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 32px;
+}
+.hero h1 {
+  font-size: clamp(3rem, 1rem + 7.6vw, 8.6rem);
+  font-weight: 820;
+  font-stretch: 118%;
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+  max-width: 11ch;
+  text-wrap: balance;
+}
+.hero h1 .line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+.hero h1 .line > span {
+  display: inline-block;
+}
+.hero__lede {
+  margin-top: clamp(20px, 3vh, 32px);
+  font-size: var(--step-1);
+  line-height: 1.5;
+  max-width: 40ch;
+  color: rgb(255 255 255 / 0.86);
+}
+.hero__actions {
+  margin-top: clamp(24px, 4vh, 40px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.hero__port {
+  text-align: right;
+  font-size: var(--step--1);
+  line-height: 1.5;
+  color: rgb(255 255 255 / 0.72);
+  max-width: 24ch;
+}
+.hero__port .place {
+  display: block;
+  font-size: 1.35rem;
+  color: var(--salt);
+}
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  width: 1.5px;
+  height: 46px;
+  background: linear-gradient(to bottom, transparent, rgb(255 255 255 / 0.55));
+  overflow: hidden;
+}
+.scroll-cue::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: var(--ember);
+  animation: cue 2.2s var(--ease-in-out) infinite;
+}
+@keyframes cue {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(260%);
+  }
+}
+
+/* Manifesto: three lines that light up word by word as the camera lifts. */
+.manifesto {
+  align-items: center;
+}
+.manifesto::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(to right, rgb(7 18 34 / 0.82) 0%, rgb(7 18 34 / 0.55) 45%, transparent 75%);
+}
+.manifesto p {
+  font-size: clamp(2rem, 0.9rem + 3.9vw, 4.6rem);
+  font-weight: 760;
+  font-stretch: 112%;
+  line-height: 1.04;
+  letter-spacing: -0.022em;
+  max-width: 17ch;
+  text-wrap: balance;
+}
+.manifesto p + p {
+  margin-top: 0.5em;
+}
+.manifesto .word {
+  opacity: 0.16;
+  transition: opacity 0.25s linear;
+}
+.manifesto .word.is-lit {
+  opacity: 1;
+}
+.manifesto .word.is-fire {
+  color: var(--ember);
+}
+
+/* Ports of call: a card per stop, chart labels pinned to the map. */
+.ports {
+  align-items: flex-end;
+  padding-bottom: clamp(24px, 6vh, 72px);
+}
+.ports .wrap {
+  display: flex;
+  justify-content: flex-end;
+}
+.port-card {
+  position: relative;
+  width: min(440px, 100%);
+  min-height: 300px;
+}
+.port {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: clamp(22px, 2.6vw, 32px);
+  border-radius: 6px;
+  background: rgb(7 18 34 / 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: inset 0 0 0 1px rgb(80 194 219 / 0.18);
+  /* Inactive cards stay in the accessibility tree; focus brings one forward. */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px);
+  transition:
+    opacity 0.5s var(--ease-out),
+    transform 0.6s var(--ease-out);
+}
+.port.is-active,
+.port:focus-within {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+  z-index: 1;
+}
+.port__leg {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: var(--step--1);
+  color: var(--lagoon);
+  margin-bottom: 14px;
+}
+.port h2 {
+  font-size: var(--step-3);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-stretch: 100%;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+.port h2 small {
+  display: block;
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-size: var(--step-0);
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--haze);
+  margin-top: 6px;
+}
+.port p {
+  margin-top: 14px;
+  color: rgb(255 255 255 / 0.84);
+}
+.port .link {
+  display: inline-block;
+  margin-top: 16px;
+  color: var(--ember);
+}
+.voyage-progress {
+  position: absolute;
+  left: var(--gutter);
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  gap: 4px;
+  list-style: none;
+  padding: 0;
+  font-size: var(--step--1);
+}
+.voyage-progress button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  min-width: 44px;
+  color: rgb(255 255 255 / 0.45);
+  transition: color 0.3s;
+}
+.voyage-progress button:hover {
+  color: var(--salt);
+}
+.voyage-progress li button::before {
+  content: '';
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1.5px currentColor;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.voyage-progress li.is-passed button {
+  color: rgb(255 255 255 / 0.8);
+}
+.voyage-progress li.is-passed button::before {
+  background: var(--ember);
+  box-shadow: 0 0 0 4px rgb(223 100 65 / 0.2);
+}
+
+.chart-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(0.95rem, 0.8rem + 0.4vw, 1.2rem);
+  color: rgb(255 255 255 / 0.92);
+  text-shadow: 0 1px 12px rgb(7 18 34 / 0.9);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.5s;
+  will-change: transform;
+}
+.chart-label span {
+  position: absolute;
+  left: 14px;
+  top: -0.7em;
+}
+.chart-label.is-sea {
+  color: rgb(80 194 219 / 0.8);
+  letter-spacing: 0.14em;
+  font-size: clamp(0.9rem, 0.7rem + 0.5vw, 1.15rem);
+}
+.chart-label.is-sea span {
+  left: 0;
+  transform: translateX(-50%);
+}
+.chart-label.is-visible {
+  opacity: 1;
+}
+
+@media (max-width: 760px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+  }
+  .hero__port {
+    display: none;
+  }
+  .voyage-progress {
+    top: calc(var(--header-h) + 12px);
+    transform: none;
+    display: flex;
+    gap: 14px;
+  }
+  .voyage-progress li span {
+    display: none;
+  }
+  .port-card {
+    min-height: 260px;
+  }
+}
+
+/* ─── Three ways aboard ──────────────────────────────────────────────────── */
+.ways {
+  background: var(--salt);
+  position: relative;
+}
+.ways__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 32px clamp(32px, 6vw, 96px);
+  align-items: end;
+  margin-bottom: clamp(40px, 6vw, 80px);
+}
+.ways__head h2 {
+  color: var(--ocean);
+  max-width: 12ch;
+}
+.ways__head p {
+  max-width: 46ch;
+}
+.ways__list {
+  list-style: none;
+  padding: 0;
+  border-top: 1.5px solid var(--ocean);
+}
+.way {
+  border-bottom: 1px solid var(--mist);
+}
+.way a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 36ch) minmax(150px, auto);
+  gap: 24px clamp(24px, 4vw, 64px);
+  align-items: center;
+  padding-block: clamp(28px, 4vw, 52px);
+  text-decoration: none;
+  color: var(--ocean);
+  position: relative;
+}
+.way__body {
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+}
+.way__name {
+  font-size: clamp(2.6rem, 1rem + 5.4vw, 6.4rem);
+  font-weight: 820;
+  font-stretch: 120%;
+  line-height: 0.9;
+  letter-spacing: -0.035em;
+  transition: font-stretch 0.6s var(--ease-out), color 0.3s;
+}
+.way__copy {
+  color: var(--basalt);
+  max-width: 44ch;
+}
+.way__meta {
+  justify-self: end;
+  text-align: right;
+  font-size: var(--step--1);
+  color: var(--tide);
+}
+.way__meta strong {
+  display: block;
+  font-size: var(--step-1);
+  color: var(--ocean);
+  font-weight: 700;
+  font-stretch: 108%;
+}
+.way a:hover .way__name,
+.way a:focus-visible .way__name {
+  font-stretch: 125%;
+  color: var(--ember-deep);
+}
+.way__cta {
+  display: inline-flex;
+  font-weight: 700;
+  color: var(--ocean);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+}
+.way a:hover .way__cta {
+  text-decoration-color: currentColor;
+}
+/* A photo that follows the cursor across the list (pointer devices only). */
+.ways__peek {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: clamp(220px, 22vw, 340px);
+  aspect-ratio: 4 / 5;
+  border-radius: 6px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -50%) scale(0.85);
+  transition: opacity 0.3s var(--ease-out), visibility 0s 0.3s;
+  box-shadow: 0 30px 60px -20px rgb(7 18 34 / 0.45);
+}
+.ways__peek.is-on {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s var(--ease-out);
+}
+.ways__peek img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.ways__peek img.is-on {
+  opacity: 1;
+}
+@media (hover: none), (max-width: 860px) {
+  .ways__peek {
+    display: none;
+  }
+}
+@media (max-width: 860px) {
+  .ways__head {
+    grid-template-columns: 1fr;
+  }
+  .way a {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .way__meta {
+    justify-self: start;
+    text-align: left;
+  }
+}
+
+/* ─── Departures board ───────────────────────────────────────────────────── */
+.departures {
+  background: var(--ocean);
+  color: var(--salt);
+  overflow: hidden;
+}
+.departures__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px 48px;
+  margin-bottom: clamp(32px, 5vw, 64px);
+}
+.departures__head h2 {
+  max-width: 13ch;
+}
+.departures__head p {
+  max-width: 42ch;
+  color: rgb(255 255 255 / 0.82);
+}
+/* ─── The Liberty, deck by deck ──────────────────────────────────────────── */
+.liberty {
+  background: var(--night);
+  color: var(--salt);
+  position: relative;
+  overflow: hidden;
+}
+.liberty__head {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 24px clamp(32px, 5vw, 80px);
+  align-items: end;
+}
+.liberty__head p {
+  color: rgb(255 255 255 / 0.82);
+  max-width: 46ch;
+}
+.specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 40px;
+  margin-top: 28px;
+  padding: 0;
+  list-style: none;
+}
+.specs li {
+  font-size: var(--step--1);
+  color: var(--haze);
+}
+.specs strong {
+  display: block;
+  font-size: var(--step-2);
+  font-weight: 760;
+  font-stretch: 112%;
+  color: var(--salt);
+  line-height: 1.1;
+}
+.profile {
+  position: relative;
+  margin-top: clamp(40px, 6vw, 80px);
+}
+.profile__drawing {
+  position: relative;
+  width: 100%;
+}
+.profile__drawing img {
+  width: 100%;
+  opacity: 0.9;
+}
+.profile__water {
+  position: absolute;
+  left: -5%;
+  right: -5%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--lagoon) 20%, var(--lagoon) 80%, transparent);
+  opacity: 0.6;
+}
+.hotspot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+.hotspot::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--ember);
+  box-shadow: 0 0 0 0 rgb(223 100 65 / 0.6);
+  animation: ping 2.4s var(--ease-out) infinite;
+  transition: transform 0.3s var(--ease-out), background 0.3s;
+}
+.hotspot::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: calc(100% - 2px);
+  left: 50%;
+  transform: translate(-50%, 4px);
+  white-space: nowrap;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: var(--salt);
+  color: var(--night);
+  font-size: 0.8125rem;
+  font-weight: 650;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s var(--ease-out), transform 0.3s var(--ease-out);
+}
+.hotspot:hover::after,
+.hotspot:focus-visible::after,
+.hotspot[aria-pressed='true']::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+@media (max-width: 860px) {
+  .hotspot::after {
+    display: none;
+  }
+}
+.hotspot[aria-pressed='true']::before {
+  background: var(--salt);
+  transform: scale(1.25);
+  animation: none;
+  box-shadow: 0 0 0 6px rgb(255 255 255 / 0.18);
+}
+@keyframes ping {
+  0% {
+    box-shadow: 0 0 0 0 rgb(223 100 65 / 0.55);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 16px rgb(223 100 65 / 0);
+  }
+}
+.decks {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  gap: 24px clamp(32px, 5vw, 80px);
+  margin-top: clamp(32px, 4vw, 56px);
+}
+.deck-list {
+  list-style: none;
+  padding: 0;
+  border-top: 1px solid rgb(255 255 255 / 0.16);
+}
+.deck-list button {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgb(255 255 255 / 0.16);
+  font-weight: 650;
+  font-stretch: 106%;
+  font-size: var(--step-1);
+  color: rgb(255 255 255 / 0.66);
+  transition: color 0.25s, padding 0.35s var(--ease-out);
+}
+.deck-list button:hover {
+  color: var(--salt);
+}
+.deck-list button[aria-selected='true'] {
+  color: var(--salt);
+  padding-left: 12px;
+  box-shadow: inset 3px 0 0 var(--ember);
+}
+.deck-list button span {
+  font-weight: 500;
+  font-size: var(--step--1);
+  color: var(--haze);
+  align-self: center;
+}
+.deck-panel {
+  min-height: 320px;
+}
+.deck-panel[hidden] {
+  display: none;
+}
+.deck-panel h3 {
+  font-size: var(--step-3);
+  font-stretch: 112%;
+}
+.deck-panel p {
+  margin-top: 14px;
+  max-width: 52ch;
+  color: rgb(255 255 255 / 0.84);
+}
+.roles {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+}
+.roles li {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.07);
+  font-size: 0.9375rem;
+}
+.deck-panel .btn {
+  margin-top: 28px;
+}
+@media (max-width: 860px) {
+  .liberty__head,
+  .decks {
+    grid-template-columns: 1fr;
+  }
+  .hotspot {
+    width: 44px;
+    height: 44px;
+  }
+  .hotspot::before {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* ─── Ship's log ─────────────────────────────────────────────────────────── */
+.log {
+  background: var(--foam);
+}
+.log__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 48px clamp(32px, 6vw, 96px);
+}
+.log h2 {
+  color: var(--ocean);
+  max-width: 11ch;
+}
+.log__intro p {
+  margin-top: 20px;
+  max-width: 40ch;
+}
+.log__figure {
+  margin-top: 32px;
+  border-radius: 6px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+}
+.log__figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tally {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1.5px solid var(--ocean);
+}
+.tally li {
+  padding: clamp(24px, 3vw, 40px) clamp(16px, 2vw, 28px) clamp(24px, 3vw, 40px) 0;
+  border-bottom: 1px solid var(--mist);
+}
+.tally li:nth-child(odd) {
+  border-right: 1px solid var(--mist);
+}
+.tally li:nth-child(even) {
+  padding-left: clamp(16px, 2.4vw, 32px);
+}
+.tally__n {
+  display: block;
+  font-size: clamp(2.6rem, 1.2rem + 4vw, 5rem);
+  font-weight: 820;
+  font-stretch: 116%;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--ocean);
+  font-variant-numeric: tabular-nums;
+}
+.tally__what {
+  display: block;
+  margin-top: 10px;
+  font-weight: 650;
+  font-size: var(--step-1);
+  color: var(--basalt);
+}
+.tally__note {
+  display: block;
+  margin-top: 6px;
+  font-size: var(--step--1);
+  color: var(--tide);
+}
+.log__source {
+  margin-top: 20px;
+  font-size: var(--step--1);
+  color: var(--tide);
+}
+@media (max-width: 860px) {
+  .log__grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 520px) {
+  .tally {
+    grid-template-columns: 1fr;
+  }
+  .tally li:nth-child(odd) {
+    border-right: 0;
+  }
+  .tally li:nth-child(even) {
+    padding-left: 0;
+  }
+}
+
+/* ─── Stories ────────────────────────────────────────────────────────────── */
+.stories__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px;
+  margin-bottom: clamp(32px, 4vw, 56px);
+}
+.stories__head h2 {
+  color: var(--ocean);
+}
+.stories__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(24px, 3vw, 48px);
+}
+.story {
+  position: relative;
+}
+.story a {
+  text-decoration: none;
+  color: inherit;
+}
+.story__img {
+  border-radius: 6px;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  background: var(--mist);
+}
+.story__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s var(--ease-out);
+}
+.story a:hover .story__img img {
+  transform: scale(1.04);
+}
+.story time {
+  display: block;
+  margin-top: 18px;
+  font-size: var(--step--1);
+  color: var(--tide);
+}
+.story h3 {
+  margin-top: 8px;
+  color: var(--ocean);
+}
+.story a:hover h3 {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+}
+.story p {
+  margin-top: 10px;
+  max-width: 54ch;
+}
+.story--lead h3 {
+  font-size: var(--step-3);
+}
+.stories__side {
+  display: grid;
+  gap: clamp(20px, 2.4vw, 32px);
+  align-content: start;
+}
+.stories__side .story a {
+  display: grid;
+  grid-template-columns: 38% 1fr;
+  gap: 20px;
+  align-items: start;
+}
+.stories__side .story__img {
+  aspect-ratio: 1;
+}
+.stories__side .story time {
+  margin-top: 0;
+}
+.stories__side .story h3 {
+  font-size: var(--step-1);
+  line-height: 1.2;
+}
+@media (max-width: 860px) {
+  .stories__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── Voices ─────────────────────────────────────────────────────────────── */
+.voices {
+  background: var(--ocean);
+  color: var(--salt);
+  position: relative;
+  overflow: hidden;
+}
+.voices__track {
+  display: grid;
+  grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+  gap: 48px clamp(32px, 6vw, 96px);
+  align-items: end;
+}
+.voices blockquote {
+  min-height: 7.5em;
+}
+.voices blockquote p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.6rem, 0.9rem + 2.2vw, 2.9rem);
+  line-height: 1.18;
+  letter-spacing: -0.012em;
+  max-width: 30ch;
+}
+.voices figcaption {
+  margin-top: 28px;
+  font-weight: 650;
+}
+.voices figcaption span {
+  display: block;
+  font-weight: 400;
+  color: var(--haze);
+}
+.voices figure[hidden] {
+  display: none;
+}
+.voices__nav {
+  display: grid;
+  gap: 4px;
+  list-style: none;
+  padding: 0;
+}
+.voices__nav button {
+  width: 100%;
+  text-align: left;
+  padding: 14px 0;
+  border-top: 1px solid rgb(255 255 255 / 0.16);
+  color: rgb(255 255 255 / 0.6);
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-weight: 600;
+  transition: color 0.25s;
+}
+.voices__nav button span {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+}
+.voices__nav button:hover,
+.voices__nav button[aria-selected='true'] {
+  color: var(--salt);
+}
+.voices__nav button[aria-selected='true'] {
+  box-shadow: inset 0 2px 0 var(--ember);
+}
+@media (max-width: 860px) {
+  .voices__track {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── Final call ─────────────────────────────────────────────────────────── */
+.final {
+  position: relative;
+  background: var(--night);
+  color: var(--salt);
+  overflow: hidden;
+  isolation: isolate;
+  padding-block: clamp(120px, 16vw, 220px);
+}
+.final__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+.final__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.4;
+}
+.final__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--night) 8%, rgb(7 18 34 / 0.45) 60%, rgb(7 18 34 / 0.75));
+}
+.final canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.final h2 {
+  font-size: clamp(3.2rem, 1rem + 9vw, 10rem);
+  font-weight: 830;
+  font-stretch: 122%;
+  line-height: 0.86;
+  letter-spacing: -0.04em;
+  max-width: 9ch;
+}
+.final p {
+  margin-top: 28px;
+  font-size: var(--step-1);
+  max-width: 42ch;
+  color: rgb(255 255 255 / 0.84);
+}
+.final__actions {
+  margin-top: 36px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.chart-labels {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.chart-label.is-land {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 112%;
+  font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
+  letter-spacing: 0.08em;
+  color: rgb(255 255 255 / 0.62);
+}
+.chart-label.is-land span {
+  left: 0;
+  transform: translateX(-50%);
+}
+.chart-label.is-left span {
+  left: auto;
+  right: 14px;
+}
+.chart-label.is-above span {
+  top: -1.9em;
+  left: 6px;
+}
+.voyage-progress {
+  text-shadow: 0 1px 10px rgb(7 18 34 / 0.9);
+}
+
+/* Before scripts run (or without them), show only the hero over the photograph. */
+.voyage__layer.manifesto,
+.voyage__layer.ports {
+  opacity: 0;
+}
+.no-js .voyage {
+  height: auto;
+}
+.no-js .voyage__fallback {
+  opacity: 1;
+}
+.no-js .voyage__layer.manifesto,
+.no-js .voyage__layer.ports,
+.no-js .chart-labels {
+  display: none;
+}

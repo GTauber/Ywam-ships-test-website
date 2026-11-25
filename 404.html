@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Page not found | YWAM Ships Kona</title>
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#071222" />
+    <link rel="icon" href="/assets/img/brand/favicon-blue-512.png" />
+  </head>
+  <body>
+    <!-- @include partials/header.html page="none" -->
+    <main id="main">
+      <section class="page-hero lost">
+        <canvas data-embers aria-hidden="true"></canvas>
+        <div class="wrap">
+          <p class="page-hero__place">Uncharted waters</p>
+          <h1>This page isn't on the chart.</h1>
+          <p class="page-hero__lede">
+            The link may be old, or the page has moved since we rebuilt the site. These will get you back on course.
+          </p>
+          <div class="page-hero__actions">
+            <a class="btn" href="/">Back to the homepage</a>
+            <a class="btn btn--ghost" href="/train.html#schools">Upcoming schools</a>
+            <a class="btn btn--ghost" href="/give.html">Donate</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- @include partials/footer.html -->
+    <script type="module">
+      import { reducedMotion } from '/src/main.js'
+      import { startEmbers } from '/src/embers2d.js'
+      const c = document.querySelector('[data-embers]')
+      if (c && !reducedMotion) startEmbers(c)
+    </script>
+  </body>
+</html>
